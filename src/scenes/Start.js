@@ -1,3 +1,5 @@
+import { Player } from '../obj/Player.js';
+
 export class Start extends Phaser.Scene {
 
     constructor() {
@@ -5,7 +7,7 @@ export class Start extends Phaser.Scene {
     }
 
     preload() {
-        this.load.tilemapTiledJSON('tilemap', 'assets/PeanutButter.tmj');
+        this.load.tilemapTiledJSON('tilemap', 'assets/Jelly.tmj');
         this.load.spritesheet('tileset', 'assets/tilemap_packed.png', { frameWidth: 8, frameHeight: 8 });
         this.load.spritesheet('tileset_transparent', 'assets/tilemap_packed_transparent.png', { frameWidth: 8, frameHeight: 8 });
     }
@@ -31,23 +33,41 @@ export class Start extends Phaser.Scene {
     cam.setZoom(5);
     cam.centerOn(80, 400-(cam.height/10));
 
-    for (const obj of objects.objects) {
-        // Link object to sprite
-        const frame = (obj.gid - 1) % 150;
+    this.coins = map.createFromObjects('Objects', { 
+        name: 'coin', 
+    });
+    this.player = map.createFromObjects('Objects', { 
+        name: 'player', 
+        classType: Player
+    })[0];
 
-        // Center sprite
-        const x = obj.x + 4;
-        const y = obj.y - 4;
+    this.player.cam = cam;
 
-        // Grab sprite from 'tileset_transparent'
-        const sprite = this.add.sprite(x, y, 'tileset_transparent', frame);
-    }
+    this.physics.add.existing(this.player);
+    this.physics.add.collider(blocks, this.player);
+
+    this.last_time = 0;
+
+    this.cursors = this.input.keyboard.createCursorKeys();
+    this.keyW = this.input.keyboard.addKey('W');
+    this.keyA = this.input.keyboard.addKey('A');
+    this.keyD = this.input.keyboard.addKey('D');
+    this.keyS = this.input.keyboard.addKey('S');
 }
 
     update(time) {
         let dt = (time - this.last_time)/1000;
         this.last_time = time;
         
+        let xDir = 0;
+        if (this.cursors.left.isDown || this.keyA.isDown) xDir--;
+        if (this.cursors.right.isDown || this.keyD.isDown) xDir++;
+
+        let yDir = 0;
+        if (this.cursors.down.isDown || this.keyS.isDown) xDir--;
+        if (this.cursors.up.isDown || this.keyW.isDown) xDir++;
+
+        this.player.update(dt, xDir, yDir, Phaser.Input.Keyboard.JustDown(this.cursors.space));
     }
     
 }

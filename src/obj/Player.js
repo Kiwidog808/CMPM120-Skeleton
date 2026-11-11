@@ -11,6 +11,9 @@ export class Player extends Phaser.GameObjects.Sprite {
         this.camVelocityMod = 2; // move cam in direction of player velocity
 
         // player vals
+        this.xVelocity = 0;
+        this.yVelocity = 0;
+
         this.friction = 0.25;
         this.speed = 1;
         this.airSpeed = 4;
@@ -18,19 +21,11 @@ export class Player extends Phaser.GameObjects.Sprite {
         this.airMaxSpeed = 8;
         this.jumpSpeed = 15;
         this.dashSpeed = 15;
-        this.gravity = 2;
+        this.gravity = 0.1;
 
         this.xSpawn = x;
         this.ySpawn = y;
         this.dashCount = 1;
-    }
-
-    setIsGrounded(isGrounded) {
-        this.isGrounded = isGrounded;
-        
-        if (isGrounded) {
-            this.dashCount = 1;
-        }
     }
 
     checkpoint(x, y) {
@@ -44,19 +39,21 @@ export class Player extends Phaser.GameObjects.Sprite {
     }
 
     camUpdate(dt) {
-        let targetPos = this.y + (this.yVelocity * this.camVelocityMod);
+        let targetPos = this.y - (this.yVelocity * this.camVelocityMod);
         if (Math.abs(targetPos - this.cam.y) < this.camBuffer) return;
 
         this.cam.y += targetPos * dt * this.camSpeed;
     }
 
     update(dt, xInput, yInput, jumpPressed) {
+        let groundedFlag = this.body.blocked.down;
+
         // velocity
         this.xVelocity -= this.xVelocity * dt * this.friction;
 
         let curSpeed = this.speed;
         let curMaxSpeed = this.maxSpeed;
-        if (!this.isGrounded) {
+        if (!groundedFlag) {
             curSpeed = this.airSpeed;
             curMaxSpeed = this.airMaxSpeed;
         }
@@ -69,13 +66,21 @@ export class Player extends Phaser.GameObjects.Sprite {
             }
         }
 
-        this.yVelocity -= dt * this.gravity;
-        if (jumpPressed && this.isGrounded) {
-            this.yVelocity += dt * this.jumpSpeed;
+        console.log(jumpPressed+' && '+groundedFlag);
+        if (!groundedFlag) {
+            this.yVelocity += dt * this.gravity;
         }
+        else {
+            this.yVelocity = 0;
+
+            if (jumpPressed) {
+                this.yVelocity -= dt * this.jumpSpeed;
+            }
+        }
+        
 
         // dashing
-        if (jumpPressed && !this.isGrounded && this.dashCount && (xInput || yInput)) {
+        if (jumpPressed && !groundedFlag && this.dashCount && (xInput || yInput)) {
             let curDash = this.dashSpeed * dt;
 
             // half speed if corner dashing
@@ -88,18 +93,19 @@ export class Player extends Phaser.GameObjects.Sprite {
                 this.xVelocity += curDash * xInput;
             }
             if (yInput) {
-                this.yVelocity += curDash * yInput;
+                this.yVelocity -= curDash * yInput;
             }
 
             this.dashCount--;
         }
 
-        // update position
-        this.x += this.xVelocity;
-        this.y += this.yVelocity;
+        console.log(this.xVelocity +" | "+ this.yVelocity);
+        // update physics velocity
+        this.body.velocity.x = this.xVelocity * 1000;
+        this.body.velocity.y = this.yVelocity * 1000;
 
         // update cam
-        this.camUpdate(dt);
+        //this.camUpdate(dt);
     }
     
 

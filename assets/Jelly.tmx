@@ -1,8 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="20" height="50" tilewidth="8" tileheight="8" infinite="0" nextlayerid="6" nextobjectid="76">
- <tileset firstgid="1" source="Pico.tsx"/>
- <tileset firstgid="151" source="tilemap_packed_transparent.tsx"/>
- <layer id="2" name="Bg" width="20" height="50">
+ <editorsettings>
+  <export target="Jelly.tmj" format="json"/>
+ </editorsettings>
+ <tileset firstgid="1" name="Pico" tilewidth="8" tileheight="8" tilecount="150" columns="15">
+  <image source="tilemap_packed.png" width="120" height="80"/>
+  <wangsets>
+   <wangset name="JellySet" type="mixed" tile="-1">
+    <wangcolor name="Jelly" color="#ff0000" tile="-1" probability="1"/>
+    <wangtile tileid="2" wangid="1,1,1,1,1,1,1,1"/>
+    <wangtile tileid="9" wangid="1,1,1,1,1,1,1,1"/>
+    <wangtile tileid="10" wangid="1,1,1,0,1,1,1,1"/>
+    <wangtile tileid="11" wangid="1,1,1,0,0,0,1,1"/>
+    <wangtile tileid="12" wangid="1,1,1,1,1,0,1,1"/>
+    <wangtile tileid="17" wangid="1,1,1,1,1,1,1,1"/>
+    <wangtile tileid="24" wangid="1,1,1,1,1,1,1,1"/>
+    <wangtile tileid="25" wangid="1,0,0,0,1,1,1,1"/>
+    <wangtile tileid="27" wangid="1,1,1,1,1,0,0,0"/>
+    <wangtile tileid="32" wangid="1,1,1,1,1,1,1,1"/>
+    <wangtile tileid="39" wangid="1,1,1,1,1,1,1,1"/>
+    <wangtile tileid="40" wangid="1,0,1,1,1,1,1,1"/>
+    <wangtile tileid="41" wangid="0,0,1,1,1,1,1,0"/>
+    <wangtile tileid="42" wangid="1,1,1,1,1,1,1,0"/>
+    <wangtile tileid="54" wangid="0,0,0,0,1,0,0,0"/>
+    <wangtile tileid="55" wangid="0,0,1,0,0,0,0,0"/>
+    <wangtile tileid="56" wangid="0,0,1,0,0,0,1,0"/>
+    <wangtile tileid="57" wangid="0,0,0,0,0,0,1,0"/>
+    <wangtile tileid="69" wangid="1,0,0,0,1,0,0,0"/>
+    <wangtile tileid="70" wangid="0,0,1,1,1,0,0,0"/>
+    <wangtile tileid="71" wangid="0,0,0,0,1,1,1,0"/>
+    <wangtile tileid="84" wangid="1,0,0,0,0,0,0,0"/>
+    <wangtile tileid="85" wangid="1,1,1,0,0,0,0,0"/>
+    <wangtile tileid="86" wangid="1,0,0,0,0,0,1,1"/>
+   </wangset>
+  </wangsets>
+ </tileset>
+ <tileset firstgid="151" name="tilemap_packed_transparent" tilewidth="8" tileheight="8" tilecount="150" columns="15">
+  <image source="tilemap_packed_transparent.png" width="120" height="80"/>
+ </tileset>
+ <tileset firstgid="301" name="tilemap_packed_transparent" tilewidth="8" tileheight="8" tilecount="150" columns="15">
+  <image source="tilemap_packed_transparent.png" width="120" height="80"/>
+  <tile id="91">
+   <objectgroup draworder="index" id="3">
+    <object id="3" x="0.111111" y="0.666667" width="7.41871" height="5.71111"/>
+   </objectgroup>
+  </tile>
+ </tileset>
+ <layer id="2" name="BG" width="20" height="50">
   <data encoding="csv">
 77,77,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
@@ -225,11 +269,11 @@
   <object id="8" gid="16" x="0" y="32" width="8" height="8"/>
   <object id="9" gid="67" x="0" y="304" width="8" height="8"/>
   <object id="10" gid="67" x="152" y="256" width="8" height="8"/>
-  <object id="11" gid="89" x="104" y="376" width="8" height="8"/>
-  <object id="12" gid="89" x="40" y="384" width="8" height="8"/>
+  <object id="11" name="coin" gid="89" x="104" y="376" width="8" height="8"/>
+  <object id="12" name="coin" gid="89" x="40" y="384" width="8" height="8"/>
   <object id="13" gid="89" x="8" y="360" width="8" height="8"/>
   <object id="14" gid="89" x="8" y="344" width="8" height="8"/>
-  <object id="15" gid="89" x="56" y="336" width="8" height="8"/>
+  <object id="15" name="coin" gid="89" x="56" y="336" width="8" height="8"/>
   <object id="16" gid="89" x="96" y="328" width="8" height="8"/>
   <object id="17" gid="89" x="152" y="328" width="8" height="8"/>
   <object id="18" gid="89" x="152" y="312" width="8" height="8"/>
@@ -262,7 +306,7 @@
   <object id="54" gid="89" x="24" y="48" width="8" height="8"/>
   <object id="55" gid="89" x="8" y="128" width="8" height="8"/>
   <object id="56" gid="89" x="8" y="104" width="8" height="8"/>
-  <object id="59" name="player" type="Player.js" gid="242" x="144" y="392" width="8" height="8"/>
+  <object id="59" name="player" gid="242" x="144" y="384" width="8" height="8"/>
   <object id="60" gid="265" x="40" y="344" width="8" height="8"/>
   <object id="61" gid="265" x="24" y="288" width="8" height="8"/>
   <object id="62" gid="265" x="72" y="144" width="8" height="8"/>
@@ -270,6 +314,5 @@
   <object id="64" gid="298" x="40" y="120" width="8" height="8"/>
   <object id="69" gid="218" x="48" y="320" width="8" height="8"/>
   <object id="70" gid="218" x="24" y="120" width="8" height="8"/>
-  <object id="75" name="coin" gid="239" x="120" y="384" width="8" height="8"/>
  </objectgroup>
 </map>
