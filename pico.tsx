@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset version="1.10" tiledversion="1.12.2" name="Pico" tilewidth="8" tileheight="8" tilecount="150" columns="15">
  <image source="assets/tilemap_packed.png" width="120" height="80"/>
+ <tile id="75">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="1" y="4" width="6" height="4"/>
+  </objectgroup>
+ </tile>
  <wangsets>
   <wangset name="JellySet" type="mixed" tile="-1">
    <wangcolor name="Jelly" color="#ff0000" tile="-1" probability="1"/>
