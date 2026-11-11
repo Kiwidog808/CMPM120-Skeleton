@@ -14,14 +14,14 @@ export class Player extends Phaser.GameObjects.Sprite {
         this.xVelocity = 0;
         this.yVelocity = 0;
 
-        this.friction = 0.25;
+        this.friction = 10;
         this.speed = 1;
         this.airSpeed = 4;
-        this.maxSpeed = 2;
-        this.airMaxSpeed = 8;
-        this.jumpSpeed = 15;
-        this.dashSpeed = 15;
-        this.gravity = 0.1;
+        this.maxSpeed = 0.15;
+        this.airMaxSpeed = 0.15;
+        this.jumpSpeed = 0.1;
+        this.dashSpeed = 0.1;
+        this.gravity = 0.25;
 
         this.xSpawn = x;
         this.ySpawn = y;
@@ -58,27 +58,25 @@ export class Player extends Phaser.GameObjects.Sprite {
             curMaxSpeed = this.airMaxSpeed;
         }
 
-        if (Math.abs(this.xVelocity) < curMaxSpeed) {
+        let absX = Math.abs(this.xVelocity);
+        if (absX < curMaxSpeed) {
             this.xVelocity += xInput * dt * this.speed;
 
-            if (Math.abs(this.xVelocity) > curMaxSpeed) {
-                this.xVelocity = curMaxSpeed;
+            if (absX > curMaxSpeed) {
+                this.xVelocity *= curMaxSpeed / absX;
             }
         }
 
-        console.log(jumpPressed+' && '+groundedFlag);
         if (!groundedFlag) {
             this.yVelocity += dt * this.gravity;
         }
-        else {
-            this.yVelocity = 0;
-
-            if (jumpPressed) {
-                this.yVelocity -= dt * this.jumpSpeed;
-            }
+        else if (jumpPressed) {
+            this.yVelocity -= this.jumpSpeed;
+        }
+        else if (this.yVelocity > 0) { // reset velocity if not moving upwards
+            this.yVelocity = 0.01;
         }
         
-
         // dashing
         if (jumpPressed && !groundedFlag && this.dashCount && (xInput || yInput)) {
             let curDash = this.dashSpeed * dt;
@@ -87,6 +85,7 @@ export class Player extends Phaser.GameObjects.Sprite {
             if (xInput && yInput) {
                 curDash /= 2;
             }
+            console.log(curDash);
 
             // apply speed
             if (xInput) {
@@ -99,7 +98,6 @@ export class Player extends Phaser.GameObjects.Sprite {
             this.dashCount--;
         }
 
-        console.log(this.xVelocity +" | "+ this.yVelocity);
         // update physics velocity
         this.body.velocity.x = this.xVelocity * 1000;
         this.body.velocity.y = this.yVelocity * 1000;

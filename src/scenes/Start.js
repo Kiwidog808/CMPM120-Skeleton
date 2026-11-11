@@ -64,8 +64,8 @@ export class Start extends Phaser.Scene {
         if (this.cursors.right.isDown || this.keyD.isDown) xDir++;
 
         let yDir = 0;
-        if (this.cursors.down.isDown || this.keyS.isDown) xDir--;
-        if (this.cursors.up.isDown || this.keyW.isDown) xDir++;
+        if (this.cursors.down.isDown || this.keyS.isDown) yDir--;
+        if (this.cursors.up.isDown || this.keyW.isDown) yDir++;
 
         this.player.update(dt, xDir, yDir, Phaser.Input.Keyboard.JustDown(this.cursors.space));
     }
