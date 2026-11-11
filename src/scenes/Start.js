@@ -7,7 +7,7 @@ export class Start extends Phaser.Scene {
     }
 
     preload() {
-        this.load.tilemapTiledJSON('tilemap', 'assets/Jelly.tmj');
+        this.load.tilemapTiledJSON('tilemap', 'assets/PeanutButter.tmj');
         this.load.spritesheet('tileset', 'assets/tilemap_packed.png', { frameWidth: 8, frameHeight: 8 });
         this.load.spritesheet('tileset_transparent', 'assets/tilemap_packed_transparent.png', { frameWidth: 8, frameHeight: 8 });
     }
@@ -35,6 +35,24 @@ export class Start extends Phaser.Scene {
 
     this.coins = map.createFromObjects('Objects', { 
         name: 'coin', 
+    });
+    this.keys = map.createFromObjects('Objects', { 
+        name: 'key', 
+    });
+    this.jumpPads = map.createFromObjects('Objects', { 
+        name: 'jumpPad', 
+    });
+    this.enemies = map.createFromObjects('Objects', { 
+        name: 'enemy', 
+    });
+    this.locks = map.createFromObjects('Objects', { 
+        name: 'lock', 
+    });
+    this.checkpoints = map.createFromObjects('Objects', { 
+        name: 'checkpoint', 
+    });
+    this.stars = map.createFromObjects('Objects', { 
+        name: 'star', 
     });
     this.player = map.createFromObjects('Objects', { 
         name: 'player', 
