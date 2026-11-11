@@ -27,6 +27,7 @@ export class Start extends Phaser.Scene {
 
     // Make all blocks solid
     blocks.setCollisionByExclusion([-1]);
+    spikes.setCollisionByExclusion([-1]);
 
     const cam = this.cameras.main;
     cam.setBackgroundColor('#a4816a');
@@ -63,6 +64,10 @@ export class Start extends Phaser.Scene {
 
     this.physics.add.existing(this.player);
     this.physics.add.collider(blocks, this.player);
+    this.physics.add.collider(spikes, this.player, () => {
+        this.player.respawn();
+    });
+    
 
     this.last_time = 0;
 
