@@ -11,6 +11,11 @@ const config = {
     pixelArt: true,
     physics: {
         default: 'arcade',
+        arcade: {
+            // Debug mode for testing
+            debug: true,
+            fps: 120,
+        },
     },
     scene: [
         Start
