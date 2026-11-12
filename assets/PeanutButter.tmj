@@ -387,6 +387,27 @@
                  "id":21,
                  "name":"player",
                  "opacity":1,
+                 "properties":[
+                        {
+                         "name":"friction",
+                         "type":"string",
+                         "value":"10"
+                        }, 
+                        {
+                         "name":"jump",
+                         "type":"string",
+                         "value":".075"
+                        }, 
+                        {
+                         "name":"maxSpeed",
+                         "type":"string",
+                         "value":".025"
+                        }, 
+                        {
+                         "name":"speed",
+                         "type":"string",
+                         "value":".25"
+                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
