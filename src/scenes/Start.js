@@ -76,7 +76,7 @@ export class Start extends Phaser.Scene {
             classType: Player
         })[0];
 cam.width
-        cam.startFollow(this.player, true, 0, 0.08, 0, 0);
+        cam.startFollow(this.player, false, 0, 0.08, 0, 0);
         cam.setBounds(-cam.width / 32, 0, 0, map.heightInPixels);
 
         // Physics
