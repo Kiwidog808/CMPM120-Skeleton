@@ -15,6 +15,7 @@ const config = {
             // Debug mode for testing
             debug: true,
             fps: 120,
+            tileBias: 2
         },
     },
     scene: [

@@ -75,12 +75,26 @@ export class Start extends Phaser.Scene {
             name: 'player', 
             classType: Player
         })[0];
-
-        this.player.cam = cam;
+cam.width
+        cam.startFollow(this.player, true, 0, 0.08, 0, 0);
+        cam.setBounds(-cam.width / 32, 0, 0, map.heightInPixels);
 
         // Physics
         this.physics.add.existing(this.player);
         this.physics.add.collider(blocks, this.player);
+
+        this.physics.add.collider(spikes, this.player, () => {
+            this.player.respawn();
+        });
+
+        this.physics.add.overlap(this.enemies, this.player, () => {
+            this.player.respawn();
+        });
+
+        this.player.body.setSize(4, 6);
+        this.player.body.setOffset(2, 2);
+
+        this.player.checkpoint(this.player.x, this.player.y);
 
         // World border
         this.physics.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
@@ -140,6 +154,10 @@ export class Start extends Phaser.Scene {
     update(time) {
         let dt = (time - this.last_time)/1000;
         this.last_time = time;
+
+        if (dt > 0.1) {
+            return; // prevent lag spikes from sending the player into the ground
+        }
         
         let xDir = 0;
         if (this.cursors.left.isDown || this.keyA.isDown) xDir--;

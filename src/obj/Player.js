@@ -4,24 +4,17 @@ export class Player extends Phaser.GameObjects.Sprite {
 
         scene.add.existing(this);
 
-        // cam vals
-        this.cam = undefined; // cam obj
-        this.camBuffer = 20;
-        this.camSpeed = 10;
-        this.camVelocityMod = 2; // move cam in direction of player velocity
-
         // player vals
-        this.xVelocity = 0;
-        this.yVelocity = 0;
-
         this.friction = 10;
-        this.speed = 1;
-        this.airSpeed = 4;
+        this.speed = 0.25;
+        this.airSpeed = 20;
         this.maxSpeed = 0.15;
-        this.airMaxSpeed = 0.15;
-        this.jumpSpeed = 0.1;
-        this.dashSpeed = 0.1;
-        this.gravity = 0.25;
+        this.airMaxSpeed = 0.05;
+        this.jumpSpeed = 0.075;
+        this.dashSpeed = 0.115;
+        this.gravity = 0.3;
+        this.cyoteTime = 0.15;
+        this.curCyoteBuffer = 0;
 
         this.xSpawn = x;
         this.ySpawn = y;
@@ -36,74 +29,81 @@ export class Player extends Phaser.GameObjects.Sprite {
     respawn() {
         this.x = this.xSpawn;
         this.y = this.ySpawn;
-    }
 
-    camUpdate(dt) {
-        let targetPos = this.y - (this.yVelocity * this.camVelocityMod);
-        if (Math.abs(targetPos - this.cam.y) < this.camBuffer) return;
-
-        this.cam.y += targetPos * dt * this.camSpeed;
+        this.body.velocity.x = 0;
+        this.body.velocity.y = 0;
     }
 
     update(dt, xInput, yInput, jumpPressed) {
+        // get data
+        let xVelocity = this.body.velocity.x / 1000;
+        let yVelocity = this.body.velocity.y / 1000;
+
         let groundedFlag = this.body.blocked.down;
+        let bufferGroundedFlag = groundedFlag;
 
-        // velocity
-        this.xVelocity -= this.xVelocity * dt * this.friction;
-
-        let curSpeed = this.speed;
-        let curMaxSpeed = this.maxSpeed;
         if (!groundedFlag) {
-            curSpeed = this.airSpeed;
-            curMaxSpeed = this.airMaxSpeed;
+            this.curCyoteBuffer -= dt;
+            bufferGroundedFlag = this.curCyoteBuffer > 0;
         }
 
-        let absX = Math.abs(this.xVelocity);
-        if (absX < curMaxSpeed) {
-            this.xVelocity += xInput * dt * this.speed;
+        // velocity
+        let curSpeed = this.airSpeed;
+        let curMaxSpeed = this.airMaxSpeed;
+        if (groundedFlag && yVelocity >= 0) {
+            xVelocity -= xVelocity * dt * this.friction;
+
+            curSpeed = this.speed;
+            curMaxSpeed = this.maxSpeed;
+
+            this.curCyoteBuffer = this.cyoteTime;
+            this.dashCount = 1;
+        }
+
+        let xSpeed = xInput * dt * this.speed;
+        let absX = Math.abs(xVelocity);
+        if (Math.abs(xVelocity + xSpeed) < absX) {
+            xVelocity += xSpeed;
+        }
+        else if (absX < curMaxSpeed) {
+            xVelocity += xSpeed;
 
             if (absX > curMaxSpeed) {
-                this.xVelocity *= curMaxSpeed / absX;
+                xVelocity *= curMaxSpeed / absX;
             }
         }
 
-        if (!groundedFlag) {
-            this.yVelocity += dt * this.gravity;
-        }
-        else if (jumpPressed) {
-            this.yVelocity -= this.jumpSpeed;
-        }
-        else if (this.yVelocity > 0) { // reset velocity if not moving upwards
-            this.yVelocity = 0.01;
+        yVelocity += dt * this.gravity;
+        if (jumpPressed && bufferGroundedFlag) {
+            console.log(this.curCyoteBuffer);
+            yVelocity -= this.jumpSpeed;
+            this.curCyoteBuffer = 0;
         }
         
         // dashing
-        if (jumpPressed && !groundedFlag && this.dashCount && (xInput || yInput)) {
-            let curDash = this.dashSpeed * dt;
+        if (jumpPressed && !bufferGroundedFlag && this.dashCount && (xInput || yInput)) {
+            let curDash = this.dashSpeed;
 
             // half speed if corner dashing
             if (xInput && yInput) {
-                curDash /= 2;
+                curDash *= Math.sqrt(0.5);
             }
             console.log(curDash);
 
             // apply speed
             if (xInput) {
-                this.xVelocity += curDash * xInput;
+                xVelocity = curDash * xInput;
             }
             if (yInput) {
-                this.yVelocity -= curDash * yInput;
+                yVelocity = -curDash * yInput;
             }
 
             this.dashCount--;
         }
 
         // update physics velocity
-        this.body.velocity.x = this.xVelocity * 1000;
-        this.body.velocity.y = this.yVelocity * 1000;
-
-        // update cam
-        //this.camUpdate(dt);
+        this.body.velocity.x = xVelocity * 1000;
+        this.body.velocity.y = yVelocity * 1000;
     }
     
 
