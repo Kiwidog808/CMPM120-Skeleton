@@ -11,6 +11,8 @@ const enemyPaths = [
     { left: 2, right: 1, speed: 20 },
 ];
 
+const jumpPadSpeed = 0.125;
+
 export class Start extends Phaser.Scene {
 
     constructor() {
@@ -19,7 +21,7 @@ export class Start extends Phaser.Scene {
 
     preload() {
         // Load
-        this.load.tilemapTiledJSON('tilemap', 'assets/Jelly.tmj');
+        this.load.tilemapTiledJSON('tilemap', 'assets/PeanutButter.tmj');
         this.load.spritesheet('tileset', 'assets/tilemap_packed.png', { frameWidth: 8, frameHeight: 8 });
         this.load.spritesheet('tileset_transparent', 'assets/tilemap_packed_transparent.png', { frameWidth: 8, frameHeight: 8 });
     }
@@ -83,20 +85,23 @@ export class Start extends Phaser.Scene {
         this.physics.add.existing(this.player);
         this.physics.add.collider(blocks, this.player);
 
+        // Spike hitboxes
         spikes.forEachTile((tile) => {
             if (tile.index == -1) return;
             console.log(tile.x * 8);
-            let hitbox = this.add.zone(tile.x * 8 + 4, tile.y * 8 + 4, 4, 4);
+            let hitbox = this.add.zone(tile.x * 8 + 4, tile.y * 8 + 4, 3, 3);
             this.physics.add.existing(hitbox);
             this.physics.add.overlap(hitbox, this.player, () => {
                 this.player.respawn();
             });
         });
 
+        // Kill player on enemy collision
         this.physics.add.overlap(this.enemies, this.player, () => {
             this.player.respawn();
         });
 
+        // Player hitbox
         this.player.body.setSize(4, 6);
         this.player.body.setOffset(2, 2);
 
@@ -130,6 +135,7 @@ export class Start extends Phaser.Scene {
 
             // Enemy physics
             this.physics.add.existing(enemy);
+            enemy.body.setSize(5, 5);
             enemy.body.setAllowGravity(false);
             // Start at left end of path
             enemy.x = startX;
@@ -156,14 +162,37 @@ export class Start extends Phaser.Scene {
             coin.destroy();
             this.coinCount++;
         });
-    }
+
+        // Keys
+        this.keys = this.physics.add.staticGroup(this.keys);
+        // Check for overlap between player and keys
+        this.physics.add.overlap(this.player, this.keys, (player, key) => {
+            // If overlap, collect key and increment key count
+            key.destroy();
+            this.keyCount++;
+        });
+
+        // Jump pads
+        // Make jump pad hitboxes
+        this.jumpPadZones = this.jumpPads.map((pad) => {
+            let zone = this.add.zone(pad.x, pad.y + 2, 6, 4);
+            this.physics.add.existing(zone, true);
+            return zone;
+        });
+        // Jump pad overlap
+        this.physics.add.overlap(this.player, this.jumpPadZones, (player) => {
+            player.body.velocity.y = -jumpPadSpeed * 1000;
+            // Reset dash
+            player.dashCount = 1;
+        });
+    }d
 
     update(time) {
         let dt = (time - this.last_time)/1000;
         this.last_time = time;
 
         if (dt > 0.1) {
-            return; // prevent lag spikes from sending the player into the ground
+            return;
         }
         
         let xDir = 0;
