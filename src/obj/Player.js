@@ -95,6 +95,8 @@ export class Player extends Phaser.GameObjects.Sprite {
             }
 
             // apply speed
+            xVelocity = 0;
+            yVelocity = 0;
             if (xInput) {
                 xVelocity = curDash * xInput;
             }
