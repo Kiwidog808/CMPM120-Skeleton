@@ -19,7 +19,7 @@ export class Start extends Phaser.Scene {
 
     preload() {
         // Load
-        this.load.tilemapTiledJSON('tilemap', 'assets/PeanutButter.tmj');
+        this.load.tilemapTiledJSON('tilemap', 'assets/Jelly.tmj');
         this.load.spritesheet('tileset', 'assets/tilemap_packed.png', { frameWidth: 8, frameHeight: 8 });
         this.load.spritesheet('tileset_transparent', 'assets/tilemap_packed_transparent.png', { frameWidth: 8, frameHeight: 8 });
     }
@@ -75,7 +75,7 @@ export class Start extends Phaser.Scene {
             name: 'player', 
             classType: Player
         })[0];
-cam.width
+
         cam.startFollow(this.player, false, 0, 0.08, 0, 0);
         cam.setBounds(-cam.width / 32, 0, 0, map.heightInPixels);
 
@@ -94,6 +94,7 @@ cam.width
         this.player.body.setSize(4, 6);
         this.player.body.setOffset(2, 2);
 
+        this.player.init(objects.objects.find(obj => obj.name === 'player').properties);
         this.player.checkpoint(this.player.x, this.player.y);
 
         // World border

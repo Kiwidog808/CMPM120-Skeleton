@@ -1,24 +1,24 @@
 export class Player extends Phaser.GameObjects.Sprite {
-    constructor(scene, x, y, image) {
+    constructor(scene, x, y, image, data) {
         super(scene, x, y, image);
 
         scene.add.existing(this);
-
-        // player vals
-        this.friction = 10;
-        this.speed = 0.25;
+    }
+    
+    init(data) {
+        this.friction = data.find(x => x.name == 'friction').value // 10;
+        this.speed = data.find(x => x.name == 'speed').value // 0.25;
         this.airSpeed = 20;
-        this.maxSpeed = 0.15;
+        this.maxSpeed = data.find(x => x.name == 'maxSpeed').value // 0.025;
         this.airMaxSpeed = 0.05;
-        this.jumpSpeed = 0.075;
+        this.jumpSpeed = data.find(x => x.name == 'jump').value // 0.075;
         this.dashSpeed = 0.115;
         this.gravity = 0.3;
         this.cyoteTime = 0.15;
         this.curCyoteBuffer = 0;
-
-        this.xSpawn = x;
-        this.ySpawn = y;
         this.dashCount = 1;
+
+        this.hasInit = true;
     }
 
     checkpoint(x, y) {
@@ -31,10 +31,15 @@ export class Player extends Phaser.GameObjects.Sprite {
         this.y = this.ySpawn;
 
         this.body.velocity.x = 0;
-        this.body.velocity.y = 0;
+        this.body.velocity.y = -10; // stop cyote time from resetting       
+
+        this.curCyoteBuffer = 0;
+        this.dashCount = 0;
     }
 
     update(dt, xInput, yInput, jumpPressed) {
+        if (!this.hasInit) return;
+
         // get data
         let xVelocity = this.body.velocity.x / 1000;
         let yVelocity = this.body.velocity.y / 1000;
@@ -88,7 +93,6 @@ export class Player extends Phaser.GameObjects.Sprite {
             if (xInput && yInput) {
                 curDash *= Math.sqrt(0.5);
             }
-            console.log(curDash);
 
             // apply speed
             if (xInput) {
