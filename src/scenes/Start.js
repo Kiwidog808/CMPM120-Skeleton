@@ -238,7 +238,7 @@ export class Start extends Phaser.Scene {
         this.last_time = time;
 
         if (dt > 0.1) {
-            return;
+            dt = 0.1; // cap lower fps physics
         }
 
         if (this.keyC.isDown) this.player.checkpoint();
