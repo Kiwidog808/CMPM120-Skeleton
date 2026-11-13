@@ -13,7 +13,7 @@ const config = {
         default: 'arcade',
         arcade: {
             // Debug mode for testing
-            //debug: true,
+            debug: true,
             fps: 120,
             tileBias: 2
         },

@@ -6,8 +6,8 @@ const enemyPaths = [
     { left: 1, right: 2, speed: 30 },
     { left: 1, right: 2, speed: 15 },
     { left: 1, right: 2, speed: 20 },
-    { left: 2, right: 1, speed: 25 },
-    { left: 1, right: 1, speed: 20 },
+    { left: 2, right: 1, speed: 35 },
+    { left: 0, right: 1, speed: 6.67 },
     { left: 2, right: 1, speed: 20 },
 ];
 
@@ -21,9 +21,14 @@ export class Start extends Phaser.Scene {
 
     preload() {
         // Load
-        this.load.tilemapTiledJSON('tilemap', 'assets/Jelly.tmj');
+        this.load.tilemapTiledJSON('tilemap', 'assets/PeanutButter.tmj');
         this.load.spritesheet('tileset', 'assets/tilemap_packed.png', { frameWidth: 8, frameHeight: 8 });
         this.load.spritesheet('tileset_transparent', 'assets/tilemap_packed_transparent.png', { frameWidth: 8, frameHeight: 8 });
+
+        // Load particles
+        this.load.image('pb', 'assets/pb.png');
+        this.load.image('jelly', 'assets/jelly.png');
+        this.load.image('dash', 'assets/dash.png');
     }
 
     create() {
@@ -95,13 +100,13 @@ export class Start extends Phaser.Scene {
             let hitbox = this.add.zone(tile.x * 8 + 4, tile.y * 8 + 4, 3, 3);
             this.physics.add.existing(hitbox);
             this.physics.add.overlap(hitbox, this.player, () => {
-                this.player.respawn();
+                this.killPlayer();
             });
         });
 
         // Kill player on enemy collision
         this.physics.add.overlap(this.enemies, this.player, () => {
-            this.player.respawn();
+            this.killPlayer();
         });
 
         // Player hitbox
@@ -160,20 +165,35 @@ export class Start extends Phaser.Scene {
 
         // Coins
         this.coinGroup = this.physics.add.staticGroup(this.coins);
+        // Smaller hitbox
+        this.coinGroup.getChildren().forEach(coin => coin.body.setSize(4, 4));
         // Check for overlap between player and coins
         this.physics.add.overlap(this.player, this.coinGroup, (player, coin) => {
             // If overlap, collect coin and increment coin count
-            coin.destroy();
+            this.hideItem(coin);
             this.coinCount++;
         });
 
         // Keys
         this.keys = this.physics.add.staticGroup(this.keys);
+        // Smaller hitbox
+        this.keys.getChildren().forEach(key => key.body.setSize(5, 5));
         // Check for overlap between player and keys
         this.physics.add.overlap(this.player, this.keys, (player, key) => {
             // If overlap, collect key and increment key count
-            key.destroy();
+            this.hideItem(key);
             this.keyCount++;
+        });
+
+        // Stars
+        this.stars = this.physics.add.staticGroup(this.stars);
+        // Smaller hitbox
+        this.stars.getChildren().forEach(star => star.body.setSize(4, 4));
+        // Check for overlap between player and stars
+        this.physics.add.overlap(this.player, this.stars, (player, star) => {
+            // If overlap, collect star and increment star count
+            this.hideItem(star); 
+            this.starCount++;
         });
 
         // Jump pads
@@ -189,7 +209,29 @@ export class Start extends Phaser.Scene {
             // Reset dash
             player.dashCount = 1;
         });
-    }d
+    }
+
+    // Hide item when collected
+    hideItem(item) {
+        item.body.enable = false;
+        item.setVisible(false);
+    }
+
+    // Bring item back when respawned
+    showItem(item) {
+        item.body.enable = true;
+        item.setVisible(true);
+    }
+    
+    killPlayer() {
+        // Respawn player
+        this.player.respawn();
+        // Reset collected items
+        this.coinGroup.getChildren().forEach(coin => this.showItem(coin));
+        this.keys.getChildren().forEach(key => this.showItem(key));
+        this.coinCount = 0;
+        this.keyCount = 0;
+    }
 
     update(time) {
         let dt = (time - this.last_time)/1000;

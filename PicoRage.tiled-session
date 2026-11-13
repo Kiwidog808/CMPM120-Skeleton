@@ -2,10 +2,22 @@
     "activeFile": "assets/PeanutButter.tmx",
     "expandedProjectPaths": [
     ],
+    "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "": {
             "scaleInDock": 1,
             "scaleInEditor": 1
+        },
+        "/Users/kiwi/Desktop/CMPM 120/CMPM120-activity7-main/assets/tilemap.tmx": {
+            "scale": 0.8378,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 456.5528765815231,
+                "y": 578.8971114824542
+            }
+        },
+        "/Users/kiwi/Desktop/CMPM 120/CMPM120-activity7-main/assets/tilemap.tmx#landscape": {
+            "scaleInDock": 0.9618
         },
         "PeanutButter.tmx": {
             "scale": 5.0199,
@@ -24,11 +36,14 @@
             "scaleInEditor": 8.1
         },
         "assets/PeanutButter.tmx": {
-            "scale": 6.223,
+            "expandedObjectLayers": [
+                3
+            ],
+            "scale": 3.862,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 113.77149284910814,
-                "y": 54.234292142053675
+                "x": 45.183842568617294,
+                "y": 329.7514241325738
             }
         },
         "assets/PeanutButter.tmx#Pico": {
@@ -63,8 +78,10 @@
         "assets/PeanutButter.tmx"
     ],
     "project": "PicoRage.tiled-project",
+    "property.type": "string",
     "recentFiles": [
         "assets/PeanutButter.tmx",
+        "/Users/kiwi/Desktop/CMPM 120/CMPM120-activity7-main/assets/tilemap.tmx",
         "assets/tilemap_packed_transparent.tsx",
         "assets/pico.tsx",
         "Pico.tsx",

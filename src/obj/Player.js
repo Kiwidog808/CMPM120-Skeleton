@@ -19,6 +19,34 @@ export class Player extends Phaser.GameObjects.Sprite {
         this.curCyoteBuffer = 0;
         this.dashCount = 1;
         this.startFrame = this.frame.name;
+        this.airTime = 0;
+
+        // Particles
+        const particle = data.find(x => x.name === 'particle');
+        // Choose particle based on level
+        const particleKey = particle ? particle.value : 'pb';
+        this.landingParticles = this.scene.add.particles(0, 0, particleKey, {
+            emitting: false,
+            speed: { min: 15, max: 45 },
+            // Cone upward
+            angle: { min: 200, max: 340 },
+            gravityY: 150,
+            lifespan: { min: 250, max: 450 },
+            // See 0.5 of the particle, then scale down to 0
+            scale: { start: 0.25, end: 0 },
+            // Random rotation
+            rotate: { min: 0, max: 360 },
+        });
+        this.dashParticles = this.scene.add.particles(0, 0, 'dash', {
+            emitting: false,
+            frequency: 20,
+            speed: { min: 0, max: 15 },
+            lifespan: 300,
+            scale: { start: 1, end: 0 },
+            // Start at 75% opacity, then fade out to 0
+            alpha: { start: 0.75, end: 0 },
+        });
+        this.dashParticles.startFollow(this);
     }
 
     checkpoint(forced = false) {
@@ -40,6 +68,22 @@ export class Player extends Phaser.GameObjects.Sprite {
 
         this.curCyoteBuffer = 0;
         this.dashCount = 0;
+
+        this.airTime = 0;
+
+        // Stop dash particles on death
+        this.dashParticles.stop();
+    }
+
+    // Play landing particles
+    playLandingParticles() {
+        this.landingParticles.explode(8, this.x, this.body.bottom);
+    }
+
+    // Play dash particles
+    playDashParticles() {
+        // Play for 150ms, then stop
+        this.dashParticles.start(0, 150);
     }
 
     update(dt, xInput, yInput, jumpPressed) {
@@ -113,6 +157,8 @@ export class Player extends Phaser.GameObjects.Sprite {
                 yVelocity = -curDash * yInput;
             }
 
+            this.playDashParticles(xVelocity, yVelocity);
+
             this.dashCount--;
         }
 
@@ -128,6 +174,16 @@ export class Player extends Phaser.GameObjects.Sprite {
         let curFrame = this.startFrame;
         if (yVelocity < 0) {
             curFrame++;
+        }
+
+        // Landing detection for particles
+        if (!groundedFlag) {
+            this.airTime += dt;
+        }
+        else {
+            // Landed if was in air for more than 0.1 seconds
+            if (this.airTime > 0.1) this.playLandingParticles();
+            this.airTime = 0;
         }
 
         this.setFrame(curFrame);
