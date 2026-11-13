@@ -21,7 +21,7 @@ export class Start extends Phaser.Scene {
 
     preload() {
         // Load
-        this.load.tilemapTiledJSON('tilemap', 'assets/PeanutButter.tmj');
+        this.load.tilemapTiledJSON('tilemap', 'assets/Jelly.tmj');
         this.load.spritesheet('tileset', 'assets/tilemap_packed.png', { frameWidth: 8, frameHeight: 8 });
         this.load.spritesheet('tileset_transparent', 'assets/tilemap_packed_transparent.png', { frameWidth: 8, frameHeight: 8 });
     }
@@ -77,6 +77,9 @@ export class Start extends Phaser.Scene {
             name: 'player', 
             classType: Player
         })[0];
+        let gid = objects.objects.find(x => x.name == 'player').gid % 150 - 92;
+        let jumpImage = this.textures.getFrame('tileset_transparent', gid);
+        //this.player.frame = gid;
 
         cam.startFollow(this.player, false, 0, 0.08, 0, 0);
         cam.setBounds(-cam.width / 32, 0, 0, map.heightInPixels);
@@ -88,7 +91,7 @@ export class Start extends Phaser.Scene {
         // Spike hitboxes
         spikes.forEachTile((tile) => {
             if (tile.index == -1) return;
-            console.log(tile.x * 8);
+
             let hitbox = this.add.zone(tile.x * 8 + 4, tile.y * 8 + 4, 3, 3);
             this.physics.add.existing(hitbox);
             this.physics.add.overlap(hitbox, this.player, () => {
@@ -106,7 +109,7 @@ export class Start extends Phaser.Scene {
         this.player.body.setOffset(2, 2);
 
         this.player.init(objects.objects.find(obj => obj.name === 'player').properties);
-        this.player.checkpoint(this.player.x, this.player.y);
+        this.player.checkpoint(true);
 
         // World border
         this.physics.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
@@ -124,6 +127,7 @@ export class Start extends Phaser.Scene {
         this.keyA = this.input.keyboard.addKey('A');
         this.keyD = this.input.keyboard.addKey('D');
         this.keyS = this.input.keyboard.addKey('S');
+        this.keyC = this.input.keyboard.addKey('C');
 
         // Enemies
         // Loop through each enemy and set movement
@@ -194,6 +198,8 @@ export class Start extends Phaser.Scene {
         if (dt > 0.1) {
             return;
         }
+
+        if (this.keyC.isDown) this.player.checkpoint();
         
         let xDir = 0;
         if (this.cursors.left.isDown || this.keyA.isDown) xDir--;

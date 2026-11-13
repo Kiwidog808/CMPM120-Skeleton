@@ -14,31 +14,41 @@ export class Player extends Phaser.GameObjects.Sprite {
         this.jumpSpeed = data.find(x => x.name == 'jump').value // 0.075;
         this.dashSpeed = 0.115;
         this.gravity = 0.3;
+        this.gravCap = 0.2;
         this.cyoteTime = 0.15;
         this.curCyoteBuffer = 0;
         this.dashCount = 1;
-
-        this.hasInit = true;
+        this.startFrame = this.frame.name;
     }
 
-    checkpoint(x, y) {
-        this.xSpawn = x;
-        this.ySpawn = y;
+    checkpoint(forced = false) {
+        if (!forced && !this.body.blocked.down) return false;
+
+        this.xSpawn = this.x;
+        this.ySpawn = this.y;
+
+        return true;
     }
 
     respawn() {
         this.x = this.xSpawn;
         this.y = this.ySpawn;
 
-        this.body.velocity.x = 0;
-        this.body.velocity.y = -10; // stop cyote time from resetting       
+        console.log(this.body.velocity.y);
+        this.body.setVelocityX(0);
+        this.body.setVelocityY(0);      
 
         this.curCyoteBuffer = 0;
         this.dashCount = 0;
     }
 
     update(dt, xInput, yInput, jumpPressed) {
-        if (!this.hasInit) return;
+        if (this.dashCount == 0) {
+            this.tint = 0xDDAAAA;
+        }
+        else {
+            this.clearTint();
+        }
 
         // get data
         let xVelocity = this.body.velocity.x / 1000;
@@ -80,7 +90,6 @@ export class Player extends Phaser.GameObjects.Sprite {
 
         yVelocity += dt * this.gravity;
         if (jumpPressed && bufferGroundedFlag) {
-            console.log(this.curCyoteBuffer);
             yVelocity -= this.jumpSpeed;
             this.curCyoteBuffer = 0;
         }
@@ -91,7 +100,7 @@ export class Player extends Phaser.GameObjects.Sprite {
 
             // half speed if corner dashing
             if (xInput && yInput) {
-                curDash *= Math.sqrt(0.5);
+                curDash *= Math.sqrt(0.5); // get hypotenuse so dash magnitude is same
             }
 
             // apply speed
@@ -107,9 +116,25 @@ export class Player extends Phaser.GameObjects.Sprite {
             this.dashCount--;
         }
 
+        // cap downwards velocity to prevent phasing through ground (expecially when respawning)
+        if (yVelocity > this.gravCap) {
+            yVelocity = this.gravCap;
+        }
+
+        if (xVelocity != 0) {
+            this.flipX = xVelocity < 0;
+        }
+
+        let curFrame = this.startFrame;
+        if (yVelocity < 0) {
+            curFrame++;
+        }
+
+        this.setFrame(curFrame);
+
         // update physics velocity
-        this.body.velocity.x = xVelocity * 1000;
-        this.body.velocity.y = yVelocity * 1000;
+        this.body.setVelocityX(xVelocity * 1000);
+        this.body.setVelocityY(yVelocity * 1000);
     }
     
 
