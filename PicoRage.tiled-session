@@ -19,6 +19,14 @@
         "/Users/kiwi/Desktop/CMPM 120/CMPM120-activity7-main/assets/tilemap.tmx#landscape": {
             "scaleInDock": 0.9618
         },
+        "Jelly.tmx": {
+            "scale": 2.6658,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 72.58609047940581,
+                "y": 363.68069622627354
+            }
+        },
         "PeanutButter.tmx": {
             "scale": 5.0199,
             "selectedLayer": 2,
@@ -39,11 +47,11 @@
             "expandedObjectLayers": [
                 3
             ],
-            "scale": 5.0972,
-            "selectedLayer": 2,
+            "scale": 5.279,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 43.062858039708075,
-                "y": 271.0311543592561
+                "x": 27.183178632316725,
+                "y": 402.25421481341164
             }
         },
         "assets/PeanutButter.tmx#Pico": {
@@ -80,6 +88,7 @@
     "project": "PicoRage.tiled-project",
     "property.type": "string",
     "recentFiles": [
+        "Jelly.tmx",
         "assets/PeanutButter.tmx",
         "/Users/kiwi/Desktop/CMPM 120/CMPM120-activity7-main/assets/tilemap.tmx",
         "assets/tilemap_packed_transparent.tsx",

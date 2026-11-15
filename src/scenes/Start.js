@@ -22,9 +22,18 @@ export class Start extends Phaser.Scene {
         super('Start');
     }
 
+    init(data) {
+        // Set level key to load, default to PeanutButter
+        this.levelKey = data.level ?? 'PeanutButter';
+        // Carry over score
+        this.startCoins = data.coinCount ?? 0;
+        this.startStars = data.starCount ?? 0;
+    }
+
     preload() {
         // Load
-        this.load.tilemapTiledJSON('tilemap', 'assets/PeanutButter.tmj');
+        this.load.tilemapTiledJSON('PeanutButter', 'assets/PeanutButter.tmj');
+        this.load.tilemapTiledJSON('Jelly', 'assets/Jelly.tmj');
         this.load.spritesheet('tileset', 'assets/tilemap_packed.png', { frameWidth: 8, frameHeight: 8 });
         this.load.spritesheet('tileset_transparent', 'assets/tilemap_packed_transparent.png', { frameWidth: 8, frameHeight: 8 });
 
@@ -35,7 +44,8 @@ export class Start extends Phaser.Scene {
     }
 
     create() {
-        const map = this.make.tilemap({ key: 'tilemap' });
+        // Set map using levelKey
+        const map = this.make.tilemap({ key: this.levelKey });
 
         // tilesets
         const pico  = map.addTilesetImage('Pico', 'tileset');
@@ -68,6 +78,9 @@ export class Start extends Phaser.Scene {
         });
         this.jumpPads = map.createFromObjects('Objects', { 
             name: 'jumpPad', 
+        });
+        this.exit = map.createFromObjects('Objects', { 
+            name: 'exit', 
         });
         this.enemies = map.createFromObjects('Objects', { 
             name: 'enemy', 
@@ -125,8 +138,8 @@ export class Start extends Phaser.Scene {
         this.player.body.setCollideWorldBounds(true);
 
         // Game stats
-        this.coinCount = 0;
-        this.starCount = 0;
+        this.coinCount = this.startCoins;
+        this.starCount = this.startStars;
         this.keyCount = 0;
 
         // Saved game stats
@@ -134,8 +147,8 @@ export class Start extends Phaser.Scene {
         this.collected = new Set();
         // Items saved
         this.savedCollected = new Set();
-        this.savedCoinCount = 0;
-        this.savedStarCount = 0;
+        this.savedCoinCount = this.startCoins;
+        this.savedStarCount = this.startStars;
         this.savedKeyCount = 0;
 
         this.last_time = 0;
@@ -225,7 +238,20 @@ export class Start extends Phaser.Scene {
             // Reset dash
             player.dashCount = 1;
         });
+        
+        // Exit
+        this.exitGroup = this.physics.add.staticGroup(this.exit);
+        this.exitGroup.getChildren().forEach(exit => exit.body.setSize(8, 5));
+        this.physics.add.overlap(this.player, this.exitGroup, (player, exit) => {
+            // Restart scene with new level (set coins and stars to saved values)
+            this.scene.restart({
+                level: 'Jelly',
+                coinCount: this.coinCount,
+                starCount: this.starCount,
+            });
+        });
 
+        // UI
         this.scoreText = this.add.text(8, 8, '', {
             fontFamily: 'monospace',
             fontSize: '25px',

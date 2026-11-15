@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="20" height="50" tilewidth="8" tileheight="8" infinite="0" nextlayerid="6" nextobjectid="64">
+<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="20" height="50" tilewidth="8" tileheight="8" infinite="0" nextlayerid="6" nextobjectid="66">
  <editorsettings>
   <export target="PeanutButter.tmj" format="json"/>
  </editorsettings>
@@ -254,7 +254,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="3" name="Objects">
+ <objectgroup id="3" name="Objects" class="exit">
   <object id="2" name="key" gid="217" x="128" y="376" width="8" height="8"/>
   <object id="4" name="jumpPad" gid="16" x="152" y="344" width="8" height="8"/>
   <object id="6" name="lock" gid="218" x="136" y="280" width="8" height="8"/>
@@ -302,5 +302,7 @@
   <object id="55" name="coin" gid="239" x="16" y="264" width="8" height="8"/>
   <object id="56" name="coin" gid="239" x="72" y="392" width="8" height="8"/>
   <object id="60" name="jumpPad" gid="16" x="152" y="248" width="8" height="8"/>
+  <object id="64" name="exit" gid="77" x="144" y="8" width="8" height="8"/>
+  <object id="65" name="exit" gid="77" x="152" y="8" width="8" height="8"/>
  </objectgroup>
 </map>

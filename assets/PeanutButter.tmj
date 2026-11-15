@@ -247,6 +247,7 @@
          "y":0
         }, 
         {
+         "class":"exit",
          "draworder":"topdown",
          "id":3,
          "name":"Objects",
@@ -784,6 +785,33 @@
                  "width":8,
                  "x":152,
                  "y":248
+                }, 
+                {
+                 "gid":77,
+                 "height":8,
+                 "id":64,
+                 "name":"exit",
+                 "opacity":1,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":144,
+                 "y":8
+                },
+            
+                {
+                 "gid":77,
+                 "height":8,
+                 "id":65,
+                 "name":"exit",
+                 "opacity":1,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":152,
+                 "y":8
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -792,7 +820,7 @@
          "y":0
         }],
  "nextlayerid":6,
- "nextobjectid":64,
+ "nextobjectid":66,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.12.2",
