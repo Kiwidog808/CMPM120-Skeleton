@@ -59,16 +59,11 @@ export class Player extends Phaser.GameObjects.Sprite {
     }
 
     respawn() {
-        this.x = this.xSpawn;
-        this.y = this.ySpawn;
-
-        console.log(this.body.velocity.y);
-        this.body.setVelocityX(0);
-        this.body.setVelocityY(0);      
+        // Respawn player at last checkpoint
+        this.body.reset(this.xSpawn, this.ySpawn);    
 
         this.curCyoteBuffer = 0;
         this.dashCount = 0;
-
         this.airTime = 0;
 
         // Stop dash particles on death

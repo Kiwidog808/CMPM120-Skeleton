@@ -13,6 +13,9 @@ const enemyPaths = [
 
 const jumpPadSpeed = 0.125;
 
+const coinPoints = 100;
+const starPoints = 500;
+
 export class Start extends Phaser.Scene {
 
     constructor() {
@@ -87,7 +90,8 @@ export class Start extends Phaser.Scene {
         //this.player.frame = gid;
 
         cam.startFollow(this.player, false, 0, 0.08, 0, 0);
-        cam.setBounds(-cam.width / 32, 0, 0, map.heightInPixels);
+        const viewWidth = cam.width / cam.zoom;
+        cam.setBounds(map.widthInPixels / 2 - viewWidth / 2, 0, viewWidth, map.heightInPixels);
 
         // Physics
         this.physics.add.existing(this.player);
@@ -122,6 +126,7 @@ export class Start extends Phaser.Scene {
 
         // Game stats
         this.coinCount = 0;
+        this.starCount = 0;
         this.keyCount = 0;
 
         this.last_time = 0;
@@ -172,6 +177,7 @@ export class Start extends Phaser.Scene {
             // If overlap, collect coin and increment coin count
             this.hideItem(coin);
             this.coinCount++;
+            this.updateScore();
         });
 
         // Keys
@@ -194,6 +200,7 @@ export class Start extends Phaser.Scene {
             // If overlap, collect star and increment star count
             this.hideItem(star); 
             this.starCount++;
+            this.updateScore();
         });
 
         // Jump pads
@@ -209,6 +216,22 @@ export class Start extends Phaser.Scene {
             // Reset dash
             player.dashCount = 1;
         });
+
+        this.scoreText = this.add.text(8, 8, '', {
+            fontFamily: 'monospace',
+            fontSize: '25px',
+            color: '#ffffff',
+            stroke: '#000000',
+            strokeThickness: 3,
+        });
+        this.updateScore();
+
+        // Set UI camera
+        this.uiCam = this.cameras.add(0, 0, cam.width, cam.height);
+        // Don't show everything except scoreText
+        this.uiCam.ignore(this.children.list.filter(obj => obj !== this.scoreText));
+        // Don't show scoreText in main camera
+        cam.ignore(this.scoreText);
     }
 
     // Hide item when collected
@@ -229,9 +252,23 @@ export class Start extends Phaser.Scene {
         // Reset collected items
         this.coinGroup.getChildren().forEach(coin => this.showItem(coin));
         this.keys.getChildren().forEach(key => this.showItem(key));
+        this.stars.getChildren().forEach(star => this.showItem(star));
         this.coinCount = 0;
         this.keyCount = 0;
+        this.starCount = 0;
+        this.updateScore();
     }
+
+    getScore() {
+        // Compute score based on coins and stars
+        return this.coinCount * coinPoints + this.starCount * starPoints;
+    }
+
+    updateScore() {
+        // Update score text
+        this.scoreText.setText('Score: ' + String(this.getScore()));
+    }
+
 
     update(time) {
         let dt = (time - this.last_time)/1000;
