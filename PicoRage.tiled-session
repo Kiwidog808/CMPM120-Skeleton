@@ -39,15 +39,15 @@
             "expandedObjectLayers": [
                 3
             ],
-            "scale": 3.862,
-            "selectedLayer": 4,
+            "scale": 5.0972,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 45.183842568617294,
-                "y": 329.7514241325738
+                "x": 43.062858039708075,
+                "y": 271.0311543592561
             }
         },
         "assets/PeanutButter.tmx#Pico": {
-            "scaleInDock": 3.0611,
+            "scaleInDock": 4.2345,
             "scaleInEditor": 1
         },
         "assets/PeanutButter.tmx#tilemap_packed_transparent": {

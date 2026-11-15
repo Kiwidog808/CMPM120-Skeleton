@@ -129,6 +129,15 @@ export class Start extends Phaser.Scene {
         this.starCount = 0;
         this.keyCount = 0;
 
+        // Saved game stats
+        // Items currently collected
+        this.collected = new Set();
+        // Items saved
+        this.savedCollected = new Set();
+        this.savedCoinCount = 0;
+        this.savedStarCount = 0;
+        this.savedKeyCount = 0;
+
         this.last_time = 0;
 
         // Inputs
@@ -238,24 +247,43 @@ export class Start extends Phaser.Scene {
     hideItem(item) {
         item.body.enable = false;
         item.setVisible(false);
+        // Add item to collected set
+        this.collected.add(item);
     }
 
     // Bring item back when respawned
     showItem(item) {
         item.body.enable = true;
         item.setVisible(true);
+        // Delete item from collected set
+        this.collected.delete(item);
     }
     
+    saveProgress() {
+        // Update saved game stats
+        this.savedCollected = new Set(this.collected);
+        this.savedCoinCount = this.coinCount;
+        this.savedStarCount = this.starCount;
+        this.savedKeyCount = this.keyCount;
+    }
+
     killPlayer() {
         // Respawn player
         this.player.respawn();
+
+        // Restore all items that were not saved at checkpoint
+        const restore = (item) => {
+            if (!this.savedCollected.has(item)) this.showItem(item);
+        };
+        
         // Reset collected items
-        this.coinGroup.getChildren().forEach(coin => this.showItem(coin));
-        this.keys.getChildren().forEach(key => this.showItem(key));
-        this.stars.getChildren().forEach(star => this.showItem(star));
-        this.coinCount = 0;
-        this.keyCount = 0;
-        this.starCount = 0;
+        this.coinGroup.getChildren().forEach(restore);
+        this.keys.getChildren().forEach(restore);
+        this.stars.getChildren().forEach(restore);
+        // Revert to saved collected items
+        this.coinCount = this.savedCoinCount;
+        this.keyCount = this.savedKeyCount;
+        this.starCount = this.savedStarCount;
         this.updateScore();
     }
 
@@ -275,10 +303,12 @@ export class Start extends Phaser.Scene {
         this.last_time = time;
 
         if (dt > 0.1) {
-            dt = 0.1; // cap lower fps physics
+            // cap lower fps physics
+            dt = 0.1;
         }
 
-        if (this.keyC.isDown) this.player.checkpoint();
+        // Save progress only when checkpoint is reached and c is pressed
+        if (this.keyC.isDown && this.player.checkpoint()) this.saveProgress();
         
         let xDir = 0;
         if (this.cursors.left.isDown || this.keyA.isDown) xDir--;
