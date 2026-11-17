@@ -15,7 +15,7 @@ export class Start extends Phaser.Scene {
 
     init(data) {
         // Set level key to load, default to Start
-        this.levelKey = data.level ?? 'Start';
+        this.levelKey = data.level ?? 'End';
         this.isPractice = data.isPractice;
         // Carry over score
         this.startCoins = data.coinCount ?? 0;
@@ -32,6 +32,7 @@ export class Start extends Phaser.Scene {
         this.load.tilemapTiledJSON('Start', 'assets/Start.tmj');
         this.load.tilemapTiledJSON('PeanutButter', 'assets/PeanutButter.tmj');
         this.load.tilemapTiledJSON('Jelly', 'assets/Jelly.tmj');
+        this.load.tilemapTiledJSON('End', 'assets/end.tmj');
         this.load.spritesheet('tileset', 'assets/tilemap_packed.png', { frameWidth: 8, frameHeight: 8 });
         this.load.spritesheet('tileset_transparent', 'assets/tilemap_packed_transparent.png', { frameWidth: 8, frameHeight: 8 });
         this.load.spritesheet('tileset_colorDif', 'assets/tilemap_colorDif.png', { frameWidth: 8, frameHeight: 8 });
@@ -431,7 +432,7 @@ export class Start extends Phaser.Scene {
         }
 
         // Playtesting Checkpoints
-        // if (this.keyC.isDown && this.player.checkpoint()) this.saveProgress();
+        if (this.keyC.isDown && this.player.checkpoint()) this.saveProgress();
         if (this.checkpointCount > 0 && Phaser.Input.Keyboard.JustDown(this.keyC) && this.player.checkpoint()) {
             this.checkpointCount--;
             this.saveProgress();

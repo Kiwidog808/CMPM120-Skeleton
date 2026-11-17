@@ -345,16 +345,16 @@
                 }, 
                 {
                  "gid":224,
-                 "height":8,
+                 "height":4,
                  "id":17,
                  "name":"checkpoint",
                  "opacity":1,
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":8,
-                 "x":152,
-                 "y":272
+                 "width":4,
+                 "x":154,
+                 "y":270
                 }, 
                 {
                  "gid":16,
@@ -883,7 +883,7 @@
                  "y":248
                 }, 
                 {
-                 "gid":77,
+                 "gid":1073741901,
                  "height":8,
                  "id":64,
                  "name":"exit",
@@ -908,7 +908,7 @@
                 },
             
                 {
-                 "gid":77,
+                 "gid":1073741901,
                  "height":8,
                  "id":65,
                  "name":"exit",

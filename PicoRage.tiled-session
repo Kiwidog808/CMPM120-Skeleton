@@ -8,6 +8,15 @@
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
+        "#Pico": {
+            "scaleInDock": 2.8201
+        },
+        "#grayscale": {
+            "scaleInDock": 4.0113
+        },
+        "#tilemap_packed_transparent": {
+            "scaleInDock": 2.9708
+        },
         "/Users/kiwi/Desktop/CMPM 120/CMPM120-activity7-main/assets/tilemap.tmx": {
             "scale": 0.8378,
             "selectedLayer": 1,
@@ -47,11 +56,11 @@
             "expandedObjectLayers": [
                 3
             ],
-            "scale": 5.279,
+            "scale": 9.91,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 27.183178632316725,
-                "y": 402.25421481341164
+                "x": 144.04641775983856,
+                "y": 245.91321897073664
             }
         },
         "assets/PeanutButter.tmx#Pico": {
@@ -63,6 +72,26 @@
         },
         "assets/Pico.tsx": {
             "scaleInDock": 1
+        },
+        "assets/end.tmx": {
+            "expandedObjectLayers": [
+                3
+            ],
+            "scale": 3.896,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 65.83675564681725,
+                "y": 79.56878850102669
+            }
+        },
+        "assets/end.tmx#Pico": {
+            "scaleInDock": 2.8201
+        },
+        "assets/end.tmx#grayscale": {
+            "scaleInDock": 4.0113
+        },
+        "assets/end.tmx#tilemap_packed_transparent": {
+            "scaleInDock": 2.9708
         },
         "assets/pico.tsx": {
             "scaleInDock": 1,
@@ -81,12 +110,18 @@
         }
     },
     "last.exportedFilePath": "/Users/kiwi/Desktop/CMPM 120/CMPM120-Pico-Rage/assets",
-    "map.lastUsedExportFilter": "All Files (*)",
+    "last.imagePath": "/Users/kiwi/Desktop/CMPM 120/CMPM120-Pico-Rage/assets",
+    "map.height": 15,
+    "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 8,
+    "map.tileWidth": 8,
+    "map.width": 20,
     "openFiles": [
         "assets/PeanutButter.tmx"
     ],
     "project": "PicoRage.tiled-project",
-    "property.type": "string",
+    "property.type": "float",
     "recentFiles": [
         "Jelly.tmx",
         "assets/PeanutButter.tmx",
@@ -96,5 +131,11 @@
         "Pico.tsx",
         "tilemap_packed_transparent.tsx",
         "PeanutButter.tmx"
-    ]
+    ],
+    "tileset.embedInMap": true,
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 8,
+        "width": 8
+    }
 }
