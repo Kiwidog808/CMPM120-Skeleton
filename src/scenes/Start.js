@@ -15,7 +15,7 @@ export class Start extends Phaser.Scene {
 
     init(data) {
         // Set level key to load, default to Start
-        this.levelKey = data.level ?? 'End';
+        this.levelKey = data.level ?? 'PeanutButter';
         this.isPractice = data.isPractice;
         // Carry over score
         this.startCoins = data.coinCount ?? 0;
@@ -198,6 +198,7 @@ export class Start extends Phaser.Scene {
         this.keyS = this.input.keyboard.addKey('S');
         this.keyC = this.input.keyboard.addKey('C');
         this.keyE = this.input.keyboard.addKey('E');
+        this.keyR = this.input.keyboard.addKey('R');
         this.key0 = this.input.keyboard.addKey('ZERO');
 
         // Signs
@@ -421,7 +422,6 @@ export class Start extends Phaser.Scene {
         this.scoreText.setText('Score: ' + this.getScore() + '\nCheckpoints: ' + this.checkpointCount + '\nKeys: ' + this.keyCount);
     }
 
-
     update(time) {
         let dt = (time - this.last_time)/1000;
         this.last_time = time;
@@ -451,6 +451,10 @@ export class Start extends Phaser.Scene {
 
         if (!this.keyE.isDown) {
             this.signText.setText('');
+        }
+
+        if (Phaser.Input.Keyboard.JustDown(this.keyR)) {
+            this.killPlayer();
         }
 
         if (Phaser.Input.Keyboard.JustDown(this.key0)) {

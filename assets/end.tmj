@@ -160,7 +160,7 @@
                         {
                          "name":"friction",
                          "type":"int",
-                         "value":6
+                         "value":8
                         }, 
                         {
                          "name":"jump",

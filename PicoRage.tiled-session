@@ -59,8 +59,8 @@
             "scale": 9.91,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 144.04641775983856,
-                "y": 245.91321897073664
+                "x": 11.957618567103935,
+                "y": 395.5600403632694
             }
         },
         "assets/PeanutButter.tmx#Pico": {
@@ -77,11 +77,11 @@
             "expandedObjectLayers": [
                 3
             ],
-            "scale": 3.896,
+            "scale": 6.5973,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 65.83675564681725,
-                "y": 79.56878850102669
+                "x": -2.9557546268928263,
+                "y": 138.54152456307887
             }
         },
         "assets/end.tmx#Pico": {

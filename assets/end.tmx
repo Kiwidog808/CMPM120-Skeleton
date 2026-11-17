@@ -118,7 +118,7 @@ By Cajun W. and Garrick Y.</property>
   </object>
   <object id="11" name="player" gid="392" x="8" y="152" width="8" height="8">
    <properties>
-    <property name="friction" type="int" value="6"/>
+    <property name="friction" type="int" value="8"/>
     <property name="jump" type="float" value="0.09"/>
     <property name="maxSpeed" type="float" value="0.05"/>
     <property name="particle" value="ground"/>
