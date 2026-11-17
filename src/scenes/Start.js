@@ -121,6 +121,28 @@ export class Start extends Phaser.Scene {
             });
         });
 
+        // Lock hitboxes
+        this.locks.forEach(lock => {
+            // Get width and height from object
+            const width = lock.getData('blockWidth') ?? lock.displayWidth;
+            const height = lock.getData('blockHeight') ?? lock.displayHeight;
+
+            // Create a hitbox in the center of the lock
+            const center = lock.getCenter();
+            const blocker = this.add.zone(center.x, center.y, width - 5, height);
+            this.physics.add.existing(blocker, true); 
+            lock.blocker = blocker;
+
+            // Open lock when player overlaps with blocker
+            this.physics.add.collider(this.player, blocker, () => {
+                if (this.keyCount > 0) {
+                    this.keyCount--;
+                    this.openLock(lock);
+                    this.updateScore();
+                }
+            });
+        });
+
         // Kill player on enemy collision
         this.physics.add.overlap(this.enemies, this.player, () => {
             this.killPlayer();
@@ -141,6 +163,7 @@ export class Start extends Phaser.Scene {
         this.coinCount = this.startCoins;
         this.starCount = this.startStars;
         this.keyCount = 0;
+        this.checkpointCount = 0;
 
         // Saved game stats
         // Items currently collected
@@ -211,6 +234,7 @@ export class Start extends Phaser.Scene {
             // If overlap, collect key and increment key count
             this.hideItem(key);
             this.keyCount++;
+            this.updateScore();
         });
 
         // Stars
@@ -237,6 +261,17 @@ export class Start extends Phaser.Scene {
             player.body.velocity.y = -jumpPadSpeed * 1000;
             // Reset dash
             player.dashCount = 1;
+        });
+
+        // Checkpoints
+        this.checkpointGroup = this.physics.add.staticGroup(this.checkpoints);
+        // Smaller hitbox
+        this.checkpointGroup.getChildren().forEach(cp => cp.body.setSize(5, 5));
+        // Collecting a checkpoint gives the player one placement
+        this.physics.add.overlap(this.player, this.checkpointGroup, (player, cp) => {
+            this.hideItem(cp);
+            this.checkpointCount = 1;
+            this.updateScore();
         });
         
         // Exit
@@ -284,6 +319,21 @@ export class Start extends Phaser.Scene {
         // Delete item from collected set
         this.collected.delete(item);
     }
+
+    // Open lock when player overlaps
+    openLock(lock) {
+        lock.setVisible(false);
+        lock.blocker.body.enable = false;
+        // Track it so checkpoints save opened locks
+        this.collected.add(lock);
+    }
+
+    // Close lock when respawned
+    closeLock(lock) {
+            lock.setVisible(true);
+            lock.blocker.body.enable = true;
+            this.collected.delete(lock);
+        }
     
     saveProgress() {
         // Update saved game stats
@@ -306,11 +356,18 @@ export class Start extends Phaser.Scene {
         this.coinGroup.getChildren().forEach(restore);
         this.keys.getChildren().forEach(restore);
         this.stars.getChildren().forEach(restore);
+        this.checkpointGroup.getChildren().forEach(restore);
         // Revert to saved collected items
         this.coinCount = this.savedCoinCount;
         this.keyCount = this.savedKeyCount;
         this.starCount = this.savedStarCount;
+        this.checkpointCount = 0;
         this.updateScore();
+
+        // Close locks that weren't saved
+        this.locks.forEach(lock => {
+            if (!this.savedCollected.has(lock)) this.closeLock(lock);
+        });
     }
 
     getScore() {
@@ -320,7 +377,7 @@ export class Start extends Phaser.Scene {
 
     updateScore() {
         // Update score text
-        this.scoreText.setText('Score: ' + String(this.getScore()));
+        this.scoreText.setText('Score: ' + this.getScore() + '\nCheckpoints: ' + this.checkpointCount + '\nKeys: ' + this.keyCount);
     }
 
 
@@ -333,8 +390,13 @@ export class Start extends Phaser.Scene {
             dt = 0.1;
         }
 
-        // Save progress only when checkpoint is reached and c is pressed
-        if (this.keyC.isDown && this.player.checkpoint()) this.saveProgress();
+        // Playtesting Checkpoints
+        // if (this.keyC.isDown && this.player.checkpoint()) this.saveProgress();
+        if (Phaser.Input.Keyboard.JustDown(this.keyC) && this.checkpointCount > 0 && this.player.checkpoint()) {
+            this.checkpointCount--;   // spend it before saving so the saved count is right
+            this.saveProgress();
+            this.updateScore();
+        }
         
         let xDir = 0;
         if (this.cursors.left.isDown || this.keyA.isDown) xDir--;
