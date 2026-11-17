@@ -393,7 +393,7 @@ export class Start extends Phaser.Scene {
         // Playtesting Checkpoints
         // if (this.keyC.isDown && this.player.checkpoint()) this.saveProgress();
         if (Phaser.Input.Keyboard.JustDown(this.keyC) && this.checkpointCount > 0 && this.player.checkpoint()) {
-            this.checkpointCount--;   // spend it before saving so the saved count is right
+            this.checkpointCount--;
             this.saveProgress();
             this.updateScore();
         }
