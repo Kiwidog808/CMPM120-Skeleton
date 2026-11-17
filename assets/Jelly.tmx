@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="20" height="50" tilewidth="8" tileheight="8" infinite="0" nextlayerid="6" nextobjectid="77">
+<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="20" height="50" tilewidth="8" tileheight="8" infinite="0" nextlayerid="6" nextobjectid="79">
  <editorsettings>
   <export target="Jelly.tmj" format="json"/>
  </editorsettings>
@@ -40,7 +40,7 @@
  </tileset>
  <layer id="2" name="BG" width="20" height="50">
   <data encoding="csv">
-1073742051,1073742051,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
@@ -76,7 +76,7 @@
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
 1,1,1,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
 1,1,1,3,1,3,3,1,1,1,1,1,1,1,1,1,1,1,1,1,
 1,1,1,1,1,1,3,1,1,1,1,1,1,1,1,1,1,1,1,1,
@@ -130,10 +130,10 @@
 72,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 87,58,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,71,42,42,72,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,71,42,0,72,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,71,0,0,0,30,42,72,0,0,27,0,0,0,0,0,0,55,0,
-0,0,86,0,12,0,0,12,87,0,0,0,0,0,0,0,0,0,70,0,
-0,0,0,0,0,86,0,0,0,0,0,0,0,0,0,0,0,0,85,0,
+0,0,86,12,12,44,45,12,87,0,0,0,0,0,0,0,0,0,70,0,
+0,0,0,0,0,86,87,0,0,0,0,0,0,0,0,0,0,0,85,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,55,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,71,72,58,0,0,0,
@@ -237,7 +237,7 @@
 0,0,0,0,0,3221225698,0,0,0,3221225698,3221225698,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,3221225698,3221225698,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-3221225698,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+3221225698,3221225698,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,226,226,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1610612962,0,0,
 0,0,0,0,0,0,0,0,0,0,0,3221225698,0,0,0,0,0,1610612962,0,0,
@@ -261,10 +261,10 @@
   <object id="8" name="jumpPad" gid="166" x="0" y="32" width="8" height="8"/>
   <object id="9" name="key" gid="217" x="0" y="304" width="8" height="8"/>
   <object id="10" name="key" gid="217" x="152" y="248" width="8" height="8"/>
-  <object id="11" name="coin" gid="239" x="104" y="376" width="8" height="8"/>
+  <object id="11" name="coin" gid="239" x="96" y="384" width="8" height="8"/>
   <object id="12" name="coin" gid="239" x="40" y="384" width="8" height="8"/>
   <object id="13" name="coin" gid="239" x="8" y="368" width="8" height="8"/>
-  <object id="14" name="coin" gid="239" x="8" y="344" width="8" height="8"/>
+  <object id="14" name="coin" gid="239" x="16" y="352" width="8" height="8"/>
   <object id="15" name="coin" gid="239" x="56" y="336" width="8" height="8"/>
   <object id="16" name="coin" gid="239" x="96" y="328" width="8" height="8"/>
   <object id="17" name="coin" gid="239" x="152" y="328" width="8" height="8"/>
@@ -308,7 +308,7 @@
    <properties>
     <property name="left" value="1"/>
     <property name="right" value="1"/>
-    <property name="speed" value="5"/>
+    <property name="speed" value="10"/>
    </properties>
   </object>
   <object id="61" name="enemy" gid="265" x="24" y="288" width="8" height="8">
@@ -325,10 +325,22 @@
     <property name="speed" value="1"/>
    </properties>
   </object>
-  <object id="63" name="flag" gid="224" x="34" y="302" width="4" height="4"/>
+  <object id="63" name="checkpoint" gid="224" x="26" y="302" width="4" height="4"/>
   <object id="64" name="star" gid="298" x="40" y="120" width="8" height="8"/>
-  <object id="69" name="lock" gid="218" x="40" y="312" width="8" height="8"/>
+  <object id="69" name="lock" gid="218" x="32" y="304" width="8" height="8"/>
   <object id="70" name="lock" gid="218" x="24" y="120" width="8" height="8"/>
   <object id="76" name="jumpPad" gid="166" x="104" y="256" width="8" height="8"/>
+  <object id="77" name="exit" gid="77" x="8" y="0" width="8" height="8" rotation="180">
+   <properties>
+    <property name="isPractice" type="bool" value="false"/>
+    <property name="level" value="End"/>
+   </properties>
+  </object>
+  <object id="78" name="exit" gid="77" x="16" y="0" width="8" height="8" rotation="180">
+   <properties>
+    <property name="isPractice" type="bool" value="false"/>
+    <property name="level" value="End"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
