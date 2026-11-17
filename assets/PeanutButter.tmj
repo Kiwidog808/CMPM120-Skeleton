@@ -427,6 +427,22 @@
                  "id":22,
                  "name":"enemy",
                  "opacity":1,
+                 "properties":[
+                        {
+                         "name":"left",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"right",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"speed",
+                         "type":"int",
+                         "value":30
+                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -440,6 +456,22 @@
                  "id":23,
                  "name":"enemy",
                  "opacity":1,
+                 "properties":[
+                        {
+                         "name":"left",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"right",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"speed",
+                         "type":"int",
+                         "value":15
+                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -453,6 +485,22 @@
                  "id":26,
                  "name":"enemy",
                  "opacity":1,
+                 "properties":[
+                        {
+                         "name":"left",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"right",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"speed",
+                         "type":"int",
+                         "value":20
+                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -466,6 +514,22 @@
                  "id":27,
                  "name":"enemy",
                  "opacity":1,
+                 "properties":[
+                        {
+                         "name":"left",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"right",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"speed",
+                         "type":"int",
+                         "value":35
+                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -479,6 +543,22 @@
                  "id":28,
                  "name":"enemy",
                  "opacity":1,
+                 "properties":[
+                        {
+                         "name":"left",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"right",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"speed",
+                         "type":"int",
+                         "value":5
+                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -492,6 +572,22 @@
                  "id":29,
                  "name":"enemy",
                  "opacity":1,
+                 "properties":[
+                        {
+                         "name":"left",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"right",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"speed",
+                         "type":"int",
+                         "value":20
+                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -792,6 +888,17 @@
                  "id":64,
                  "name":"exit",
                  "opacity":1,
+                 "properties":[
+                        {
+                         "name":"isPractice",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"level",
+                         "type":"string",
+                         "value":"Jelly"
+                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -806,6 +913,17 @@
                  "id":65,
                  "name":"exit",
                  "opacity":1,
+                 "properties":[
+                        {
+                         "name":"isPractice",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"level",
+                         "type":"string",
+                         "value":"Jelly"
+                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -819,8 +937,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":6,
- "nextobjectid":66,
+ "nextlayerid":7,
+ "nextobjectid":67,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.12.2",

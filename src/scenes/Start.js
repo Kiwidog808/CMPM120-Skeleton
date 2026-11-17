@@ -1,15 +1,6 @@
 import { Player } from '../obj/Player.js';
 
 // Enemy paths for each enemy
-const enemyPaths = [
-    // Start with bottom right enemy
-    { left: 1, right: 2, speed: 30 },
-    { left: 1, right: 2, speed: 15 },
-    { left: 1, right: 2, speed: 20 },
-    { left: 2, right: 1, speed: 35 },
-    { left: 0, right: 1, speed: 6 },
-    { left: 2, right: 1, speed: 20 },
-];
 
 const jumpPadSpeed = 0.125;
 
@@ -306,7 +297,7 @@ export class Start extends Phaser.Scene {
             this.checkpointCount += 1;
             this.updateScore();
         });
-        
+        console.log(this.isPractice);
         // Exit
         this.exitGroup = this.physics.add.staticGroup(this.exit);
         this.exitGroup.getChildren().forEach(exit => exit.body.setSize(8, 5));
