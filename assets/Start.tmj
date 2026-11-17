@@ -1,0 +1,610 @@
+{ "compressionlevel":-1,
+ "height":20,
+ "infinite":false,
+ "layers":[
+        {
+         "data":[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 303, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 303, 303, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+         "height":20,
+         "id":2,
+         "name":"BG",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":20,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "data":[161, 237, 0, 0, 178, 230, 0, 0, 229, 155, 155, 155, 155, 155, 155, 155, 230, 0, 0, 171,
+            176, 0, 0, 0, 235, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 171,
+            176, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 171,
+            319, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 321,
+            319, 0, 349, 351, 0, 0, 364, 365, 0, 0, 0, 0, 0, 0, 0, 0, 349, 335, 335, 336,
+            319, 0, 0, 0, 0, 0, 321, 334, 335, 365, 0, 0, 0, 0, 0, 0, 0, 379, 305, 305,
+            319, 0, 0, 0, 0, 0, 321, 340, 318, 319, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            319, 0, 0, 0, 0, 0, 321, 0, 325, 334, 335, 335, 350, 351, 0, 0, 0, 0, 0, 0,
+            319, 0, 0, 0, 0, 0, 0, 0, 318, 310, 340, 319, 0, 0, 0, 0, 0, 0, 0, 0,
+            380, 0, 0, 0, 349, 335, 336, 333, 305, 305, 305, 380, 0, 0, 0, 0, 0, 0, 0, 349,
+            0, 0, 0, 0, 0, 379, 305, 380, 0, 0, 0, 0, 0, 364, 365, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 379, 380, 0, 0, 0, 0, 0,
+            0, 349, 335, 365, 0, 0, 0, 0, 0, 349, 351, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 321, 319, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 364, 365, 0,
+            0, 0, 379, 305, 351, 0, 0, 0, 0, 0, 0, 0, 0, 0, 364, 335, 335, 336, 334, 335,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 349, 336, 305, 305, 305, 305, 306,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 378, 0, 0, 0, 0, 321,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 321,
+            0, 348, 0, 0, 0, 0, 0, 0, 348, 0, 0, 0, 0, 0, 0, 0, 0, 0, 364, 336,
+            335, 334, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 335, 336, 340],
+         "height":20,
+         "id":3,
+         "name":"Blocks",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":20,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 381, 0, 0, 0, 366, 0, 0, 0, 0, 0, 0, 0, 0, 366, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 381, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 366, 381, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 366, 0, 0, 0, 0, 0, 0, 366, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 381, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 302, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 317, 0, 0, 401, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 332, 0, 0, 416, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 381, 362, 366, 0, 0, 0, 366, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+         "height":20,
+         "id":4,
+         "name":"Deco",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":20,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 3221225698, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3221225698, 3221225698, 0, 0, 3221225698, 0, 0, 0, 0,
+            0, 0, 0, 0, 3221225698, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 226, 226, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 2684354786, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 2684354786, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3221225698, 3221225698, 0, 0, 0, 0, 0, 226,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            3221225698, 0, 0, 0, 0, 0, 0, 0, 3221225698, 3221225698, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 226, 0, 0, 0, 3221225698, 0, 0, 0, 0, 1610612962, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 226, 226, 0,
+            0, 1610612962, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 226, 226, 226, 0, 0, 226,
+            0, 1610612962, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 226, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3221225698, 0, 0, 0, 0, 0,
+            226, 0, 226, 226, 226, 226, 226, 226, 0, 0, 0, 0, 0, 0, 0, 0, 226, 226, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+         "height":20,
+         "id":1,
+         "name":"Spikes",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":20,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":5,
+         "name":"Objects",
+         "objects":[
+                {
+                 "gid":374,
+                 "height":4,
+                 "id":1,
+                 "name":"checkpoint",
+                 "opacity":1,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":4,
+                 "x":58,
+                 "y":62
+                }, 
+                {
+                 "gid":368,
+                 "height":8,
+                 "id":2,
+                 "name":"lock",
+                 "opacity":1,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":48,
+                 "y":72
+                }, 
+                {
+                 "gid":217,
+                 "height":8,
+                 "id":3,
+                 "name":"key",
+                 "opacity":1,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":8,
+                 "y":72
+                }, 
+                {
+                 "gid":448,
+                 "height":8,
+                 "id":4,
+                 "name":"star",
+                 "opacity":1,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":152,
+                 "y":56
+                }, 
+                {
+                 "gid":316,
+                 "height":8,
+                 "id":5,
+                 "name":"jumpPad",
+                 "opacity":1,
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":8,
+                 "y":144
+                }, 
+                {
+                 "gid":242,
+                 "height":8,
+                 "id":8,
+                 "name":"player",
+                 "opacity":1,
+                 "properties":[
+                        {
+                         "name":"friction",
+                         "type":"string",
+                         "value":"6"
+                        }, 
+                        {
+                         "name":"jump",
+                         "type":"string",
+                         "value":"0.09"
+                        }, 
+                        {
+                         "name":"maxSpeed",
+                         "type":"string",
+                         "value":"0.05"
+                        }, 
+                        {
+                         "name":"particle",
+                         "type":"string",
+                         "value":"ground"
+                        }, 
+                        {
+                         "name":"speed",
+                         "type":"string",
+                         "value":"0.5"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":144,
+                 "y":144
+                }, 
+                {
+                 "gid":265,
+                 "height":8,
+                 "id":10,
+                 "name":"enemy",
+                 "opacity":1,
+                 "properties":[
+                        {
+                         "name":"left",
+                         "type":"string",
+                         "value":"1"
+                        }, 
+                        {
+                         "name":"right",
+                         "type":"string",
+                         "value":"2"
+                        }, 
+                        {
+                         "name":"speed",
+                         "type":"string",
+                         "value":"25"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":80,
+                 "y":152
+                }, 
+                {
+                 "gid":265,
+                 "height":8,
+                 "id":11,
+                 "name":"enemy",
+                 "opacity":1,
+                 "properties":[
+                        {
+                         "name":"left",
+                         "type":"string",
+                         "value":"2"
+                        }, 
+                        {
+                         "name":"right",
+                         "type":"string",
+                         "value":"1"
+                        }, 
+                        {
+                         "name":"speed",
+                         "type":"string",
+                         "value":"20"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":96,
+                 "y":56
+                }, 
+                {
+                 "gid":196,
+                 "height":8,
+                 "id":15,
+                 "name":"sign",
+                 "opacity":1,
+                 "properties":[
+                        {
+                         "name":"text",
+                         "type":"string",
+                         "value":"Welcome to the tutorial \/ level select"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":104,
+                 "y":152
+                }, 
+                {
+                 "gid":196,
+                 "height":8,
+                 "id":17,
+                 "name":"sign",
+                 "opacity":1,
+                 "properties":[
+                        {
+                         "name":"text",
+                         "type":"string",
+                         "value":"Jump mid air to use an 8-directional dash"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":64,
+                 "y":144
+                }, 
+                {
+                 "gid":240,
+                 "height":8,
+                 "id":18,
+                 "name":"sign",
+                 "opacity":1,
+                 "properties":[
+                        {
+                         "name":"text",
+                         "type":"string",
+                         "value":"- Normal mode -"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":136,
+                 "y":32
+                }, 
+                {
+                 "gid":240,
+                 "height":8,
+                 "id":21,
+                 "name":"sign",
+                 "opacity":1,
+                 "properties":[
+                        {
+                         "name":"text",
+                         "type":"string",
+                         "value":"- Practice mode -\nLevel: Peanut Butter"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":48,
+                 "y":32
+                }, 
+                {
+                 "gid":225,
+                 "height":8,
+                 "id":22,
+                 "name":"sign",
+                 "opacity":1,
+                 "properties":[
+                        {
+                         "name":"text",
+                         "type":"string",
+                         "value":"- Practice mode -\nLevel: Jelly"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":16,
+                 "y":32
+                }, 
+                {
+                 "gid":196,
+                 "height":8,
+                 "id":23,
+                 "name":"sign",
+                 "opacity":1,
+                 "properties":[
+                        {
+                         "name":"text",
+                         "type":"string",
+                         "value":"After collecting the checkpoint powerup,\npress 'c' to use while grounded."
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":32,
+                 "y":72
+                }, 
+                {
+                 "gid":227,
+                 "height":8,
+                 "id":30,
+                 "name":"exit",
+                 "opacity":1,
+                 "properties":[
+                        {
+                         "name":"isPractice",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"level",
+                         "type":"string",
+                         "value":"PeanutButter"
+                        }],
+                 "rotation":180,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":144,
+                 "y":0
+                }, 
+                {
+                 "gid":227,
+                 "height":8,
+                 "id":31,
+                 "name":"exit",
+                 "opacity":1,
+                 "properties":[
+                        {
+                         "name":"isPractice",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"level",
+                         "type":"string",
+                         "value":"PeanutButter"
+                        }],
+                 "rotation":180,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":152,
+                 "y":0
+                }, 
+                {
+                 "gid":227,
+                 "height":8,
+                 "id":32,
+                 "name":"exit",
+                 "opacity":1,
+                 "properties":[
+                        {
+                         "name":"isPractice",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"level",
+                         "type":"string",
+                         "value":"PeanutButter"
+                        }],
+                 "rotation":180,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":56,
+                 "y":0
+                }, 
+                {
+                 "gid":227,
+                 "height":8,
+                 "id":33,
+                 "name":"exit",
+                 "opacity":1,
+                 "properties":[
+                        {
+                         "name":"isPractice",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"level",
+                         "type":"string",
+                         "value":"PeanutButter"
+                        }],
+                 "rotation":180,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":64,
+                 "y":0
+                }, 
+                {
+                 "gid":227,
+                 "height":8,
+                 "id":34,
+                 "name":"exit",
+                 "opacity":1,
+                 "properties":[
+                        {
+                         "name":"isPractice",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"level",
+                         "type":"string",
+                         "value":"Jelly"
+                        }],
+                 "rotation":180,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":24,
+                 "y":0
+                }, 
+                {
+                 "gid":227,
+                 "height":8,
+                 "id":35,
+                 "name":"exit",
+                 "opacity":1,
+                 "properties":[
+                        {
+                         "name":"isPractice",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"level",
+                         "type":"string",
+                         "value":"Jelly"
+                        }],
+                 "rotation":180,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":32,
+                 "y":0
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }],
+ "nextlayerid":6,
+ "nextobjectid":39,
+ "orientation":"orthogonal",
+ "renderorder":"right-down",
+ "tiledversion":"1.12.2",
+ "tileheight":8,
+ "tilesets":[
+        {
+         "columns":15,
+         "firstgid":1,
+         "image":"tilemap_packed.png",
+         "imageheight":80,
+         "imagewidth":120,
+         "margin":0,
+         "name":"Pico",
+         "spacing":0,
+         "tilecount":150,
+         "tileheight":8,
+         "tilewidth":8
+        }, 
+        {
+         "columns":15,
+         "firstgid":151,
+         "image":"tilemap_packed_transparent.png",
+         "imageheight":80,
+         "imagewidth":120,
+         "margin":0,
+         "name":"tilemap_packed_transparent",
+         "spacing":0,
+         "tilecount":150,
+         "tileheight":8,
+         "tilewidth":8
+        }, 
+        {
+         "columns":15,
+         "firstgid":301,
+         "image":"tilemap_colorDif.png",
+         "imageheight":80,
+         "imagewidth":120,
+         "margin":0,
+         "name":"grayscale",
+         "spacing":0,
+         "tilecount":150,
+         "tileheight":8,
+         "tilewidth":8
+        }],
+ "tilewidth":8,
+ "type":"map",
+ "version":"1.10",
+ "width":20
+}

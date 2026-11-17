@@ -1,5 +1,5 @@
 export class Player extends Phaser.GameObjects.Sprite {
-    constructor(scene, x, y, image, data) {
+    constructor(scene, x, y, image) {
         super(scene, x, y, image);
 
         scene.add.existing(this);
@@ -54,6 +54,16 @@ export class Player extends Phaser.GameObjects.Sprite {
 
         this.xSpawn = this.x;
         this.ySpawn = this.y;
+
+        this.scene.checkpointObj.x = this.x;
+        this.scene.checkpointObj.y = this.y + 8;
+        this.scene.tweens.add({
+                targets: this.scene.checkpointObj,
+                // End
+                y: this.y,
+                // Distance/speed seconds
+                duration: 400
+            });
 
         return true;
     }
@@ -166,11 +176,6 @@ export class Player extends Phaser.GameObjects.Sprite {
             this.flipX = xVelocity < 0;
         }
 
-        let curFrame = this.startFrame;
-        if (yVelocity < 0) {
-            curFrame++;
-        }
-
         // Landing detection for particles
         if (!groundedFlag) {
             this.airTime += dt;
@@ -179,6 +184,12 @@ export class Player extends Phaser.GameObjects.Sprite {
             // Landed if was in air for more than 0.1 seconds
             if (this.airTime > 0.1) this.playLandingParticles();
             this.airTime = 0;
+        }
+
+        // jumping anim :)
+        let curFrame = this.startFrame;
+        if (yVelocity < 0) {
+            curFrame++;
         }
 
         this.setFrame(curFrame);

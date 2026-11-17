@@ -7,7 +7,7 @@ const enemyPaths = [
     { left: 1, right: 2, speed: 15 },
     { left: 1, right: 2, speed: 20 },
     { left: 2, right: 1, speed: 35 },
-    { left: 0, right: 1, speed: 6.67 },
+    { left: 0, right: 1, speed: 6 },
     { left: 2, right: 1, speed: 20 },
 ];
 
@@ -23,24 +23,36 @@ export class Start extends Phaser.Scene {
     }
 
     init(data) {
-        // Set level key to load, default to PeanutButter
-        this.levelKey = data.level ?? 'PeanutButter';
+        // Set level key to load, default to Start
+        this.levelKey = data.level ?? 'Start';
+        this.isPractice = data.isPractice;
         // Carry over score
         this.startCoins = data.coinCount ?? 0;
         this.startStars = data.starCount ?? 0;
+        // Reset when spawning into start
+        if (this.levelKey == 'Start') {        
+            this.startCoins = 0;
+            this.startStars = 0;
+        }
     }
 
     preload() {
         // Load
+        this.load.tilemapTiledJSON('Start', 'assets/Start.tmj');
         this.load.tilemapTiledJSON('PeanutButter', 'assets/PeanutButter.tmj');
         this.load.tilemapTiledJSON('Jelly', 'assets/Jelly.tmj');
         this.load.spritesheet('tileset', 'assets/tilemap_packed.png', { frameWidth: 8, frameHeight: 8 });
         this.load.spritesheet('tileset_transparent', 'assets/tilemap_packed_transparent.png', { frameWidth: 8, frameHeight: 8 });
+        this.load.spritesheet('tileset_colorDif', 'assets/tilemap_colorDif.png', { frameWidth: 8, frameHeight: 8 });
 
         // Load particles
         this.load.image('pb', 'assets/pb.png');
         this.load.image('jelly', 'assets/jelly.png');
+        this.load.image('ground', 'assets/ground.png');
         this.load.image('dash', 'assets/dash.png');
+        
+        // Load checkpoint
+        this.load.image('checkpoint', 'assets/checkpoint.png');
     }
 
     create() {
@@ -50,7 +62,8 @@ export class Start extends Phaser.Scene {
         // tilesets
         const pico  = map.addTilesetImage('Pico', 'tileset');
         const transparent = map.addTilesetImage('tilemap_packed_transparent', 'tileset_transparent');
-        const maps = [pico, transparent];
+        const grayscale = map.addTilesetImage('grayscale', 'tileset_colorDif');
+        const maps = [pico, transparent, grayscale];
 
         // Layers
         const bg     = map.createLayer('BG', maps, 0, 0);
@@ -61,13 +74,21 @@ export class Start extends Phaser.Scene {
 
         // Make all blocks solid
         blocks.setCollisionByExclusion([-1]);
-        //spikes.setCollisionByExclusion([-1]);
 
         // Camera
         const cam = this.cameras.main;
         cam.setBackgroundColor('#a4816a');
         cam.setZoom(5);
         cam.centerOn(80, 400-(cam.height/10));
+
+        // Checkpoint obj
+        this.checkpointObj = new Phaser.GameObjects.Sprite(this, 0, 0, 'checkpoint');
+        this.add.existing(this.checkpointObj);
+
+        // Set depth of bg, deco, and flag so that flag is behind blocks
+        bg.setDepth(-2);
+        deco.setDepth(-2);
+        this.checkpointObj.setDepth(-1);
 
         // Objects
         this.coins = map.createFromObjects('Objects', { 
@@ -81,6 +102,9 @@ export class Start extends Phaser.Scene {
         });
         this.exit = map.createFromObjects('Objects', { 
             name: 'exit', 
+        });
+        this.signs = map.createFromObjects('Objects', { 
+            name: 'sign', 
         });
         this.enemies = map.createFromObjects('Objects', { 
             name: 'enemy', 
@@ -98,9 +122,6 @@ export class Start extends Phaser.Scene {
             name: 'player', 
             classType: Player
         })[0];
-        let gid = objects.objects.find(x => x.name == 'player').gid % 150 - 92;
-        let jumpImage = this.textures.getFrame('tileset_transparent', gid);
-        //this.player.frame = gid;
 
         cam.startFollow(this.player, false, 0, 0.08, 0, 0);
         const viewWidth = cam.width / cam.zoom;
@@ -163,7 +184,7 @@ export class Start extends Phaser.Scene {
         this.coinCount = this.startCoins;
         this.starCount = this.startStars;
         this.keyCount = 0;
-        this.checkpointCount = 0;
+        this.checkpointCount = this.isPractice ? 100 : 0;
 
         // Saved game stats
         // Items currently collected
@@ -173,6 +194,7 @@ export class Start extends Phaser.Scene {
         this.savedCoinCount = this.startCoins;
         this.savedStarCount = this.startStars;
         this.savedKeyCount = 0;
+        this.savedCheckpointCount = this.checkpointCount;
 
         this.last_time = 0;
 
@@ -183,14 +205,25 @@ export class Start extends Phaser.Scene {
         this.keyD = this.input.keyboard.addKey('D');
         this.keyS = this.input.keyboard.addKey('S');
         this.keyC = this.input.keyboard.addKey('C');
+        this.keyE = this.input.keyboard.addKey('E');
+        this.key0 = this.input.keyboard.addKey('ZERO');
+
+        // Signs
+        this.signGroup = this.physics.add.staticGroup(this.signs);
+        this.signGroup.getChildren().forEach(sign => sign.body.setSize(6, 6));
+        this.physics.add.overlap(this.player, this.signs, (player, sign) => {
+            this.hitSign(sign.data.list.text);
+        });
 
         // Enemies
         // Loop through each enemy and set movement
         this.enemies.forEach((enemy, i) => {
-            // Get path or use default path if undefined
-            const { left, right, speed } = enemyPaths[i] ?? { left: 2, right: 2, speed: 20 };
-            const startX = enemy.x - left * 8;
-            const endX   = enemy.x + right * 8;
+            let left = enemy.data.list.left;
+            let right = enemy.data.list.right;
+            let speed = enemy.data.list.speed;
+            
+            let startX = enemy.x - left * 8;
+            let endX   = enemy.x + right * 8;
 
             // Enemy physics
             this.physics.add.existing(enemy);
@@ -270,7 +303,7 @@ export class Start extends Phaser.Scene {
         // Collecting a checkpoint gives the player one placement
         this.physics.add.overlap(this.player, this.checkpointGroup, (player, cp) => {
             this.hideItem(cp);
-            this.checkpointCount = 1;
+            this.checkpointCount += 1;
             this.updateScore();
         });
         
@@ -280,13 +313,21 @@ export class Start extends Phaser.Scene {
         this.physics.add.overlap(this.player, this.exitGroup, (player, exit) => {
             // Restart scene with new level (set coins and stars to saved values)
             this.scene.restart({
-                level: 'Jelly',
+                level: this.isPractice ? 'Start' : exit.data.list.level,
+                isPractice: exit.data.list.isPractice,
                 coinCount: this.coinCount,
                 starCount: this.starCount,
             });
         });
 
         // UI
+        this.signText = this.add.text(640, 360, '', {
+            fontFamily: 'monospace',
+            fontSize: '50px',
+            align: 'center',
+            color: '#ffffff',
+            backgroundColor: '#00000088'
+        }).setOrigin(0.5);
         this.scoreText = this.add.text(8, 8, '', {
             fontFamily: 'monospace',
             fontSize: '25px',
@@ -299,9 +340,10 @@ export class Start extends Phaser.Scene {
         // Set UI camera
         this.uiCam = this.cameras.add(0, 0, cam.width, cam.height);
         // Don't show everything except scoreText
-        this.uiCam.ignore(this.children.list.filter(obj => obj !== this.scoreText));
+        this.uiCam.ignore(this.children.list.filter(obj => obj !== this.scoreText && obj != this.signText));
         // Don't show scoreText in main camera
         cam.ignore(this.scoreText);
+        cam.ignore(this.signText);
     }
 
     // Hide item when collected
@@ -341,6 +383,13 @@ export class Start extends Phaser.Scene {
         this.savedCoinCount = this.coinCount;
         this.savedStarCount = this.starCount;
         this.savedKeyCount = this.keyCount;
+        this.savedCheckpointCount = this.checkpointCount;
+    }
+
+    hitSign(text) {
+        if (this.keyE.isDown) { // check sign interaction
+            this.signText.setText(text); // set sign text
+        }
     }
 
     killPlayer() {
@@ -361,7 +410,7 @@ export class Start extends Phaser.Scene {
         this.coinCount = this.savedCoinCount;
         this.keyCount = this.savedKeyCount;
         this.starCount = this.savedStarCount;
-        this.checkpointCount = 0;
+        this.checkpointCount = this.savedCheckpointCount;
         this.updateScore();
 
         // Close locks that weren't saved
@@ -392,7 +441,7 @@ export class Start extends Phaser.Scene {
 
         // Playtesting Checkpoints
         // if (this.keyC.isDown && this.player.checkpoint()) this.saveProgress();
-        if (Phaser.Input.Keyboard.JustDown(this.keyC) && this.checkpointCount > 0 && this.player.checkpoint()) {
+        if (this.checkpointCount > 0 && Phaser.Input.Keyboard.JustDown(this.keyC) && this.player.checkpoint()) {
             this.checkpointCount--;
             this.saveProgress();
             this.updateScore();
@@ -407,5 +456,18 @@ export class Start extends Phaser.Scene {
         if (this.cursors.up.isDown || this.keyW.isDown) yDir++;
 
         this.player.update(dt, xDir, yDir, Phaser.Input.Keyboard.JustDown(this.cursors.space));
+
+        if (!this.keyE.isDown) {
+            this.signText.setText('');
+        }
+
+        if (Phaser.Input.Keyboard.JustDown(this.key0)) {
+            this.scene.restart({
+                level: 'Start',
+                isPractice: false,
+                coinCount: 0,
+                starCount: 0,
+            });
+        }
     }
 }

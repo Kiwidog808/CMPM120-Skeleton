@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="8" tileheight="8" infinite="0" nextlayerid="6" nextobjectid="39">
+ <editorsettings>
+  <export target="Start.tmj" format="json"/>
+ </editorsettings>
+ <tileset firstgid="1" name="Pico" tilewidth="8" tileheight="8" tilecount="150" columns="15">
+  <image source="tilemap_packed.png" width="120" height="80"/>
+ </tileset>
+ <tileset firstgid="151" name="tilemap_packed_transparent" tilewidth="8" tileheight="8" tilecount="150" columns="15">
+  <image source="tilemap_packed_transparent.png" width="120" height="80"/>
+ </tileset>
+ <tileset firstgid="301" name="grayscale" tilewidth="8" tileheight="8" tilecount="150" columns="15">
+  <image source="tilemap_colorDif.png" width="120" height="80"/>
+ </tileset>
+ <layer id="2" name="BG" width="20" height="20">
+  <data encoding="csv">
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,303,1,1,1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,303,303,1,1,1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+</data>
+ </layer>
+ <layer id="3" name="Blocks" width="20" height="20">
+  <data encoding="csv">
+161,237,0,0,178,230,0,0,229,155,155,155,155,155,155,155,230,0,0,171,
+176,0,0,0,235,0,0,0,0,0,0,0,0,0,0,0,0,0,0,171,
+176,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,171,
+319,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,321,
+319,0,349,351,0,0,364,365,0,0,0,0,0,0,0,0,349,335,335,336,
+319,0,0,0,0,0,321,334,335,365,0,0,0,0,0,0,0,379,305,305,
+319,0,0,0,0,0,321,340,318,319,0,0,0,0,0,0,0,0,0,0,
+319,0,0,0,0,0,321,0,325,334,335,335,350,351,0,0,0,0,0,0,
+319,0,0,0,0,0,0,0,318,310,340,319,0,0,0,0,0,0,0,0,
+380,0,0,0,349,335,336,333,305,305,305,380,0,0,0,0,0,0,0,349,
+0,0,0,0,0,379,305,380,0,0,0,0,0,364,365,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,379,380,0,0,0,0,0,
+0,349,335,365,0,0,0,0,0,349,351,0,0,0,0,0,0,0,0,0,
+0,0,321,319,0,0,0,0,0,0,0,0,0,0,0,0,0,364,365,0,
+0,0,379,305,351,0,0,0,0,0,0,0,0,0,364,335,335,336,334,335,
+0,0,0,0,0,0,0,0,0,0,0,0,0,349,336,305,305,305,305,306,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,378,0,0,0,0,321,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,321,
+0,348,0,0,0,0,0,0,348,0,0,0,0,0,0,0,0,0,364,336,
+335,334,335,335,335,335,335,335,335,335,335,335,335,335,335,335,335,335,336,340
+</data>
+ </layer>
+ <layer id="4" name="Deco" width="20" height="20">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,381,0,0,0,366,0,0,0,0,0,0,0,0,366,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,381,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,366,381,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,366,0,0,0,0,0,0,366,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,381,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,302,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,317,0,0,401,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,332,0,0,416,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,381,362,366,0,0,0,366,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="1" name="Spikes" width="20" height="20">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,3221225698,0,0,0,0,0,0,0,0,0,3221225698,3221225698,0,0,3221225698,0,0,0,0,
+0,0,0,0,3221225698,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,226,226,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,2684354786,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,2684354786,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,3221225698,3221225698,0,0,0,0,0,226,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+3221225698,0,0,0,0,0,0,0,3221225698,3221225698,0,0,0,0,0,0,0,0,0,0,
+0,0,0,226,0,0,0,3221225698,0,0,0,0,1610612962,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,226,226,0,
+0,1610612962,0,0,0,0,0,0,0,0,0,0,0,0,226,226,226,0,0,226,
+0,1610612962,0,0,0,0,0,0,0,0,0,0,0,226,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,3221225698,0,0,0,0,0,
+226,0,226,226,226,226,226,226,0,0,0,0,0,0,0,0,226,226,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup id="5" name="Objects">
+  <object id="1" name="checkpoint" gid="374" x="58" y="62" width="4" height="4"/>
+  <object id="2" name="lock" gid="368" x="48" y="72" width="8" height="8"/>
+  <object id="3" name="key" gid="217" x="8" y="72" width="8" height="8"/>
+  <object id="4" name="star" gid="448" x="152" y="56" width="8" height="8"/>
+  <object id="5" name="jumpPad" gid="316" x="8" y="144" width="8" height="8"/>
+  <object id="8" name="player" gid="242" x="144" y="144" width="8" height="8">
+   <properties>
+    <property name="friction" value="6"/>
+    <property name="jump" value="0.09"/>
+    <property name="maxSpeed" value="0.05"/>
+    <property name="particle" value="ground"/>
+    <property name="speed" value="0.5"/>
+   </properties>
+  </object>
+  <object id="10" name="enemy" gid="265" x="80" y="152" width="8" height="8">
+   <properties>
+    <property name="left" value="1"/>
+    <property name="right" value="2"/>
+    <property name="speed" value="25"/>
+   </properties>
+  </object>
+  <object id="11" name="enemy" gid="265" x="96" y="56" width="8" height="8">
+   <properties>
+    <property name="left" value="2"/>
+    <property name="right" value="1"/>
+    <property name="speed" value="20"/>
+   </properties>
+  </object>
+  <object id="15" name="sign" gid="196" x="104" y="152" width="8" height="8">
+   <properties>
+    <property name="text" value="Welcome to the tutorial / level select"/>
+   </properties>
+  </object>
+  <object id="17" name="sign" gid="196" x="64" y="144" width="8" height="8">
+   <properties>
+    <property name="text" value="Jump mid air to use an 8-directional dash"/>
+   </properties>
+  </object>
+  <object id="18" name="sign" gid="240" x="136" y="32" width="8" height="8">
+   <properties>
+    <property name="text" value="- Normal mode -"/>
+   </properties>
+  </object>
+  <object id="21" name="sign" gid="240" x="48" y="32" width="8" height="8">
+   <properties>
+    <property name="text">- Practice mode -
+Level: Peanut Butter</property>
+   </properties>
+  </object>
+  <object id="22" name="sign" gid="225" x="16" y="32" width="8" height="8">
+   <properties>
+    <property name="text">- Practice mode -
+Level: Jelly</property>
+   </properties>
+  </object>
+  <object id="23" name="sign" gid="196" x="32" y="72" width="8" height="8">
+   <properties>
+    <property name="text">After collecting the checkpoint powerup,
+press 'c' to use while grounded.</property>
+   </properties>
+  </object>
+  <object id="30" name="exit" gid="227" x="144" y="0" width="8" height="8" rotation="180">
+   <properties>
+    <property name="isPractice" type="bool" value="false"/>
+    <property name="level" value="PeanutButter"/>
+   </properties>
+  </object>
+  <object id="31" name="exit" gid="227" x="152" y="0" width="8" height="8" rotation="180">
+   <properties>
+    <property name="isPractice" type="bool" value="false"/>
+    <property name="level" value="PeanutButter"/>
+   </properties>
+  </object>
+  <object id="32" name="exit" gid="227" x="56" y="0" width="8" height="8" rotation="180">
+   <properties>
+    <property name="isPractice" type="bool" value="true"/>
+    <property name="level" value="PeanutButter"/>
+   </properties>
+  </object>
+  <object id="33" name="exit" gid="227" x="64" y="0" width="8" height="8" rotation="180">
+   <properties>
+    <property name="isPractice" type="bool" value="true"/>
+    <property name="level" value="PeanutButter"/>
+   </properties>
+  </object>
+  <object id="34" name="exit" gid="227" x="24" y="0" width="8" height="8" rotation="180">
+   <properties>
+    <property name="isPractice" type="bool" value="true"/>
+    <property name="level" value="Jelly"/>
+   </properties>
+  </object>
+  <object id="35" name="exit" gid="227" x="32" y="0" width="8" height="8" rotation="180">
+   <properties>
+    <property name="isPractice" type="bool" value="true"/>
+    <property name="level" value="Jelly"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
