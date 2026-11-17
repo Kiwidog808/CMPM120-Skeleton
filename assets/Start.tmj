@@ -197,7 +197,7 @@
                  "y":144
                 }, 
                 {
-                 "gid":242,
+                 "gid":2147483890,
                  "height":8,
                  "id":8,
                  "name":"player",
@@ -206,7 +206,7 @@
                         {
                          "name":"friction",
                          "type":"string",
-                         "value":"6"
+                         "value":"8"
                         }, 
                         {
                          "name":"jump",
@@ -398,7 +398,7 @@
                         {
                          "name":"text",
                          "type":"string",
-                         "value":"After collecting the checkpoint powerup,\npress 'c' to use while grounded."
+                         "value":"After collecting the checkpoint powerup,\npress 'c' to use while grounded.\n\nPress 'r' to manually respawn."
                         }],
                  "rotation":0,
                  "type":"",
