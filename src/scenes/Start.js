@@ -145,11 +145,7 @@ export class Start extends Phaser.Scene {
                 tile.collideRight = false;
                 tile.collideDown = false;
             });
-            this.physics.add.collider(this.player, platforms, null, (player, tile) => {
-                // Collide only if the player is falling/standing and is above the tile
-                const wasAbove = player.body.prev.y + player.body.height <= tile.pixelY + 1;
-                return player.body.velocity.y >= 0 && wasAbove;
-            });
+            this.physics.add.collider(this.player, platforms);
         }
 
         // Lock hitboxes
