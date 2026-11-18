@@ -15,7 +15,7 @@ export class Start extends Phaser.Scene {
 
     init(data) {
         // Set level key to load, default to Start
-        this.levelKey = data.level ?? 'PeanutButter';
+        this.levelKey = data.level ?? 'Start';
         this.isPractice = data.isPractice;
         // Carry over score
         this.startCoins = data.coinCount ?? 0;
