@@ -24,6 +24,7 @@ export class Start extends Phaser.Scene {
         if (this.levelKey == 'Start') {        
             this.startCoins = 0;
             this.startStars = 0;
+            this.musicTime = 0;
         }
     }
 
@@ -499,7 +500,8 @@ export class Start extends Phaser.Scene {
         }
 
         // music volume
-        this.music.setVolume(2+time/100000); 
+        this.musicTime += dt;
+        this.music.setVolume(2+this.musicTime/100); 
 
         // Playtesting Checkpoints
         //if (this.keyC.isDown && this.player.checkpoint()) this.saveProgress();
