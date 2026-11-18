@@ -15,7 +15,7 @@ export class Start extends Phaser.Scene {
 
     init(data) {
         // Set level key to load, default to Start
-        this.levelKey = data.level ?? 'Start';
+        this.levelKey = data.level ?? 'PeanutButter';
         this.isPractice = data.isPractice;
         // Carry over score
         this.startCoins = data.coinCount ?? 0;
@@ -49,6 +49,7 @@ export class Start extends Phaser.Scene {
 
     create() {
         // Set map using levelKey
+        console.log('loading level:', this.levelKey);
         const map = this.make.tilemap({ key: this.levelKey });
 
         // tilesets
@@ -58,11 +59,12 @@ export class Start extends Phaser.Scene {
         const maps = [pico, transparent, grayscale];
 
         // Layers
-        const bg     = map.createLayer('BG', maps, 0, 0);
-        const deco   = map.createLayer('Deco', maps, 0, 0);
+        const bg = map.createLayer('BG', maps, 0, 0);
+        const deco = map.createLayer('Deco', maps, 0, 0);
         const blocks = map.createLayer('Blocks', maps, 0, 0);
         const spikes = map.createLayer('Spikes', maps, 0, 0);
         const objects = map.getObjectLayer('Objects');
+        const platforms = map.createLayer('Platforms', maps, 0, 0);
 
         // Make all blocks solid
         blocks.setCollisionByExclusion([-1]);
@@ -133,6 +135,22 @@ export class Start extends Phaser.Scene {
                 this.killPlayer();
             });
         });
+
+        // Platforms
+        if (platforms) {
+            platforms.setCollisionByExclusion([-1]);
+            // Only top face of platform has collision
+            platforms.forEachTile(tile => {
+                tile.collideLeft = false;
+                tile.collideRight = false;
+                tile.collideDown = false;
+            });
+            this.physics.add.collider(this.player, platforms, null, (player, tile) => {
+                // Collide only if the player is falling/standing and is above the tile
+                const wasAbove = player.body.prev.y + player.body.height <= tile.pixelY + 1;
+                return player.body.velocity.y >= 0 && wasAbove;
+            });
+        }
 
         // Lock hitboxes
         this.locks.forEach(lock => {

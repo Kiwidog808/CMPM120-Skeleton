@@ -5,7 +5,7 @@
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "": {
-            "scaleInDock": 1,
+            "scaleInDock": 2.6943,
             "scaleInEditor": 1
         },
         "#Pico": {
@@ -77,11 +77,11 @@
             "expandedObjectLayers": [
                 3
             ],
-            "scale": 6.5973,
+            "scale": 3.3127,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": -2.9557546268928263,
-                "y": 138.54152456307887
+                "x": 60.52464756844869,
+                "y": 79.39143297008482
             }
         },
         "assets/end.tmx#Pico": {
