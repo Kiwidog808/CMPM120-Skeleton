@@ -141,9 +141,10 @@ export class Start extends Phaser.Scene {
             platforms.setCollisionByExclusion([-1]);
             // Only top face of platform has collision
             platforms.forEachTile(tile => {
-                tile.collideLeft = false;
-                tile.collideRight = false;
-                tile.collideDown = false;
+                if (tile.index == -1) return;
+                // Set collision for only the top face
+                tile.setCollision(false, false, true, false, false);
+                tile.y -= 0.001;
             });
             this.physics.add.collider(this.player, platforms);
         }

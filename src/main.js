@@ -12,8 +12,6 @@ const config = {
     physics: {
         default: 'arcade',
         arcade: {
-            // Debug mode for testing
-            //debug: true,
             fps: 120,
             tileBias: 2
         },
