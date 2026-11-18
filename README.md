@@ -10,10 +10,11 @@ Assets/Sprites:
 Controls: 
 - A/D or Left/Right arrow keys to move
 - SPACE to jump (press SPACE when in the air to dash)
-    - Control dash direction (8-point dash) with WASD or Left/Right/Up/Down
+    - Control dash direction (8-directional dash) with WASD or Left/Right/Up/Down
 - E to interact
-- R to restart
 - C to place checkpoint
+- R to restart
+- 0 to return to the Starting Level
 
 Camera Behavior:
 - Camera moves up and down with the player's y-level, with a deadzone on the y-axis
@@ -26,19 +27,21 @@ Levels & Mechanics:
     - The Jelly Level is the 2nd level in the sequence that has normal jump height BUT low friction as to be slippery like jelly
 - Garrick Yanagawa created the Ending Level and the "Peanut Butter" Level
     - The Ending Level functions as an end screen to the game, but still includes gameplay and functions like a "secret", 3rd level
+    - The Ending Level can only be accessed via beating both levels 1 and 2 sequentially in normal mode
     - The Ending Level uses nromal friction and jump height
     - The Peanut Butter Level is the 1st level in the sequence that has reduced jump height AND high friction to simulate sticky Peanut Butter
 
 Level Select:
-- As mentioned prior, the player will spawn in the Starting Level where, once reaching the top, the player can choose to attempt the real level sequence OR a practice mode of each individual level (where the player is given 100 checkpoints)
+- As mentioned prior, the player will spawn in the Starting Level where, once reaching the top, the player can choose to attempt the real level sequence OR a practice mode of each individual level (where the player is given 100 checkpoints and reaching the end will take the player back to the Starting Level)
 
 Bonus Elements:
 1. As mentioned under "Camera Behavior", our game is locked to the player's y-level and includes a deadzone on the y-axis using startFollow()
 2. Our player is able to dash in one of 8 directions when pressing SPACE while in the air
     - The player gets one dash, which resets when they touch the ground or a jump pad
 3. Aside from the singular required audio "juice" (jump sound effect) and two required particle "juice" (landing and dashing), there are the following additional effects:
-    - Audio juice for collecting coins, dashing, dying, collecting checkpoint, placing checkpoint, and walking (one for Jelly, one for Peanut Butter, and a final one for the Start/End)
+    - Audio juice for collecting coins or stars, dashing, dying, collecting checkpoint, placing checkpoint, and walking (one for Jelly, one for Peanut Butter, and a final one for the Start/End)
     - 4 custom background songs (one for each level)
+        - The music slowly gets louder and more "deep fried" as time goes on to reflect the player slowly loosing their sanity as they progress. This effect is reset whenever the player enters the Starting Level.
         - Note: All sound effects and music was made by us
     - Animated player jumping sprite (player changes sprite when jumping)
     - Player darkens when dash is used up
