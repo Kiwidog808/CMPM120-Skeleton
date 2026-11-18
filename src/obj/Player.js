@@ -20,6 +20,8 @@ export class Player extends Phaser.GameObjects.Sprite {
         this.dashCount = 1;
         this.startFrame = this.frame.name;
         this.airTime = 0;
+        this.walkSfxSpeed = 100;
+        this.walkT = 0;
 
         // Particles
         const particle = data.find(x => x.name === 'particle');
@@ -65,6 +67,11 @@ export class Player extends Phaser.GameObjects.Sprite {
                 duration: 400
             });
 
+        // sound
+        let checkpointSfx = this.scene.sound.add('checkpointPlace');
+        checkpointSfx.setVolume(3); 
+        checkpointSfx.play();
+
         return true;
     }
 
@@ -83,6 +90,7 @@ export class Player extends Phaser.GameObjects.Sprite {
     // Play landing particles
     playLandingParticles() {
         this.landingParticles.explode(8, this.x, this.body.bottom);
+        this.walkT = 2; // set walkT to over 1 so it instantly plays the step sound on land
     }
 
     // Play dash particles
@@ -141,6 +149,10 @@ export class Player extends Phaser.GameObjects.Sprite {
         if (jumpPressed && bufferGroundedFlag) {
             yVelocity -= this.jumpSpeed;
             this.curCyoteBuffer = 0;
+
+            let jumpSfx = this.scene.sound.add('jump');
+            jumpSfx.setVolume(5); 
+            jumpSfx.play();
         }
         
         // dashing
@@ -161,10 +173,16 @@ export class Player extends Phaser.GameObjects.Sprite {
             if (yInput) {
                 yVelocity = -curDash * yInput;
             }
-
-            this.playDashParticles(xVelocity, yVelocity);
-
+            
             this.dashCount--;
+
+            // sound
+            let jumpSfx = this.scene.sound.add('dash');
+            jumpSfx.setVolume(0.3); 
+            jumpSfx.play();
+
+            // particles
+            this.playDashParticles(xVelocity, yVelocity);
         }
 
         // cap downwards velocity to prevent phasing through ground (expecially when respawning)
@@ -193,6 +211,15 @@ export class Player extends Phaser.GameObjects.Sprite {
         }
 
         this.setFrame(curFrame);
+
+        // walking sound 
+        if (groundedFlag && (xVelocity != 0 || this.walkT > 1)) {
+            this.walkT += dt * this.walkSfxSpeed * Math.abs(xVelocity);
+            if (this.walkT > 1) {
+                this.walkT = 0;
+                this.scene.walkSfx.play();
+            }
+        }
 
         // update physics velocity
         this.body.setVelocityX(xVelocity * 1000);

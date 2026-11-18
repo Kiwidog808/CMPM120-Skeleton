@@ -45,9 +45,43 @@ export class Start extends Phaser.Scene {
         
         // Load checkpoint
         this.load.image('checkpoint', 'assets/checkpoint.png');
+
+        // Load sounds
+        this.load.audio('StartMusic', 'assets/Sounds/Start.wav');
+        this.load.audio('PeanutButterMusic', 'assets/Sounds/PeanutButter.wav');
+        this.load.audio('JellyMusic', 'assets/Sounds/Jelly.wav');
+        this.load.audio('EndMusic', 'assets/Sounds/End.wav');
+        this.load.audio('jump', 'assets/Sounds/jump.wav');
+        this.load.audio('dash', 'assets/Sounds/dash.wav');
+        this.load.audio('death', 'assets/Sounds/death.wav');
+        this.load.audio('coin', 'assets/Sounds/coin.wav');
+        this.load.audio('star', 'assets/Sounds/star.wav');
+        this.load.audio('walk', 'assets/Sounds/walk.wav');
+        this.load.audio('walkPeanutButter', 'assets/Sounds/walkPeanutButter.wav');
+        this.load.audio('walkJelly', 'assets/Sounds/walkJelly.wav');
+        this.load.audio('checkpointPlace', 'assets/Sounds/checkpointPlace.wav');
+        this.load.audio('checkpointPickup', 'assets/Sounds/checkpointPickup.wav');
     }
 
     create() {
+        // music
+        if (this.music != undefined) {
+            this.music.stop();
+        }
+
+        this.music = this.sound.add(this.levelKey+'Music');
+        this.music.setLoop(true);
+        this.music.play();
+
+        // load walk sfx
+        let walkName = 'walk';
+        if (this.levelKey == 'PeanutButter' || this.levelKey == 'Jelly') {
+            walkName += this.levelKey;
+        }
+
+        this.walkSfx = this.sound.add(walkName)
+        this.walkSfx.setVolume(0.8); 
+
         // Set map using levelKey
         console.log('loading level:', this.levelKey);
         const map = this.make.tilemap({ key: this.levelKey });
@@ -264,6 +298,11 @@ export class Start extends Phaser.Scene {
             this.hideItem(coin);
             this.coinCount++;
             this.updateScore();
+
+            // sfx
+            let coinSfx = this.sound.add('coin');
+            coinSfx.setVolume(10); 
+            coinSfx.play();
         });
 
         // Keys
@@ -288,6 +327,10 @@ export class Start extends Phaser.Scene {
             this.hideItem(star); 
             this.starCount++;
             this.updateScore();
+            // sound
+            let starSfx = this.sound.add('star');
+            starSfx.setVolume(3); 
+            starSfx.play();
         });
 
         // Jump pads
@@ -313,6 +356,10 @@ export class Start extends Phaser.Scene {
             this.hideItem(cp);
             this.checkpointCount += 1;
             this.updateScore();
+            // sound
+            let checkpointSfx = this.sound.add('checkpointPickup');
+            checkpointSfx.setVolume(2); 
+            checkpointSfx.play();
         });
         console.log(this.isPractice);
         // Exit
@@ -404,6 +451,11 @@ export class Start extends Phaser.Scene {
         // Respawn player
         this.player.respawn();
 
+        // kill sound
+        let deathSfx = this.sound.add('death');
+        deathSfx.setVolume(1); 
+        deathSfx.play();
+
         // Restore all items that were not saved at checkpoint
         const restore = (item) => {
             if (!this.savedCollected.has(item)) this.showItem(item);
@@ -445,6 +497,9 @@ export class Start extends Phaser.Scene {
             // cap lower fps physics
             dt = 0.1;
         }
+
+        // music volume
+        this.music.setVolume(2+time/100000); 
 
         // Playtesting Checkpoints
         //if (this.keyC.isDown && this.player.checkpoint()) this.saveProgress();
